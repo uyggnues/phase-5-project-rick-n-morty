@@ -1,0 +1,2 @@
+class CharacterEpisodesController < ApplicationController
+end

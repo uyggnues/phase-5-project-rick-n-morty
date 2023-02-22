@@ -1,0 +1,2 @@
+class FavCharactersController < ApplicationController
+end
