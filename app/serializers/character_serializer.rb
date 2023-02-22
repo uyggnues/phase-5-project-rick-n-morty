@@ -1,3 +1,3 @@
 class CharacterSerializer < ActiveModel::Serializer
-  attributes :id, :name, :species, :gender, :image, :type, :origin
+  attributes :id, :name, :species, :gender, :image, :character_class, :origin
 end

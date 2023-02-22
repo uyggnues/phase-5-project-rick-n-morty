@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_22_174533) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_22_200208) do
   create_table "character_episodes", force: :cascade do |t|
     t.integer "charcter_id", null: false
     t.integer "episode_id", null: false
@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_174533) do
     t.string "species"
     t.string "gender"
     t.string "image"
-    t.string "type"
+    t.string "character_class"
     t.string "origin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

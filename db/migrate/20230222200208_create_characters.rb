@@ -5,7 +5,7 @@ class CreateCharacters < ActiveRecord::Migration[7.0]
       t.string :species
       t.string :gender
       t.string :image
-      t.string :type
+      t.string :character_class
       t.string :origin
 
       t.timestamps

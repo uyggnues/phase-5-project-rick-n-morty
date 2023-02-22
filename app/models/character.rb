@@ -1,5 +1,6 @@
 class Character < ApplicationRecord
     has_many :fav_characters
+    has_many :fav_teams
     has_many :team_members
     has_many :character_episodes
     has_many :teams, through: :team_members
@@ -9,6 +10,6 @@ class Character < ApplicationRecord
     validates :species, presence: true
     validates :gender, presence: true
     validates :image, presence: true
-    validates :type, presence: true
+    # validates :character_class, presence: true
     validates :origin, presence: true
 end
