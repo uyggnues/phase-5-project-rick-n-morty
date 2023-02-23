@@ -15,6 +15,7 @@ const Welcome = () => {
                 <br/>
                 <Link className='link' to={'/signup'}>Signup</Link> or <Link className='link' to={'/login'}>Login</Link> 
             </p>
+            <div className='pic'/>
         </div>
     )
 

@@ -17,21 +17,26 @@ const Signup = () => {
     }
 
     return (
-        <form onSubmit={(e) => Signup(e, signup, navigate)}>
-            <label>Name</label>
-            <input type='text' name='name' value={signup.name} onChange={handleChange}/>
-            <label>email</label>
-            <input type='text' name='email' value={signup.email} onChange={handleChange}/>
-            <label>password</label>
-            <input type='password' name='password' value={signup.password} onChange={handleChange}/>
-            <label>confirm_password</label>
-            <input type='password' name='confirm_password' value={signup.confirm_password} onChange={handleChange}/>
-            <input type='submit'/>
+        <div className="form">
+        <form className='signup' onSubmit={(e) => Signup(e, signup, navigate)}>
+            <h1 className='LOGIN'>SIGNuP</h1>
+            <div className='formBox'>
+            <label className='signupText'>Name</label>
+            <input className='signupInput' type='text' name='name' value={signup.name} onChange={handleChange} placeholder='your name ...'/>
+            <label className='signupText'>email</label>
+            <input className='signupInput' type='text' name='email' value={signup.email} onChange={handleChange} placeholder='email please ...'/>
+            <label className='signupText'>password</label>
+            <input className='signupInput' type='password' name='password' value={signup.password} onChange={handleChange} placeholder='dont tell anyone ...'/>
+            <label className='signupText'>confirm_password</label>
+            <input className='signupInput' type='password' name='confirm_password' value={signup.confirm_password} onChange={handleChange} placeholder='are you sure ... ?'/>
+            </div>
+            <button className='letsGo' type='submit'>welcome...</button>
 
-            <div>
+            <div className='here'>
             Already have an account? Login <Link to={'/login'}>Here</Link>
             </div>
         </form>
+        </div>
     );
 }
 

@@ -25,7 +25,8 @@ const Login = () => {
             <input type='text' name='email' value={login.email} onChange={handleChange}/>
             <label >PASSWORD</label>
             <input type='password' name='password' value={login.password} onChange={handleChange} />
-            <input type='submit'/>
+            <button className='letsGo' type='submit'>LETS GO</button>
+            <br/>
             <div className='here'>
                 Don't have an account? Signup <Link to={'/signup'}>Here</Link>
             </div>
