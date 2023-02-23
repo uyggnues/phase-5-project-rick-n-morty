@@ -38,6 +38,9 @@ gem "bcrypt", "~> 3.1.7"
 gem 'excon'
 gem 'active_model_serializers'
 gem 'httparty'
+# gem 'omniauth-facebook'
+# gem 'omniauth-rails_csrf_protection'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 

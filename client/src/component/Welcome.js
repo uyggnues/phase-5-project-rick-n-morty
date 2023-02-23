@@ -7,14 +7,24 @@ const Welcome = () => {
 
 
     if (!user) return(
-        <div>
-            Rick N Morty Wants YOU to <Link to={'/signup'}>Signup</Link> | <Link to={'/login'}>Login</Link> 
+        <div className='welcome'>
+            Rick And Morty 
+            <br/>
+            <p>
+                Wants YOU to 
+                <br/>
+                <Link className='link' to={'/signup'}>Signup</Link> or <Link className='link' to={'/login'}>Login</Link> 
+            </p>
         </div>
     )
 
     return (
-        <div>
-            Rick N Morty Welcomes YOU!
+        <div className='welcome'>
+            Rick And Morty 
+            <br/>
+            <p>
+                Welcomes YOU!
+            </p>
         </div>
     );
 }

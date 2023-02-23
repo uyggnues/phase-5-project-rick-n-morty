@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-social-login-buttons": "^3.6.1",
+    "reactjs-social-login": "^2.6.2"
+  }
+}
