@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   resources :fav_characters
   resources :users
 
-  
+  get '/authorized_user', to: 'users#show'
+  post '/login', to:'sessions#login'
+  delete '/logout', to: 'sessions#logout'
 end

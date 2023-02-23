@@ -1,2 +1,0 @@
-class TemMembersController < ApplicationController
-end

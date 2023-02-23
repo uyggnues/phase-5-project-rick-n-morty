@@ -57,19 +57,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_200208) do
     t.index ["user_id"], name: "index_fav_teams_on_user_id"
   end
 
-  create_table "teams", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tem_members", force: :cascade do |t|
+  create_table "team_members", force: :cascade do |t|
     t.integer "team_id", null: false
     t.integer "character_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["character_id"], name: "index_tem_members_on_character_id"
-    t.index ["team_id"], name: "index_tem_members_on_team_id"
+    t.index ["character_id"], name: "index_team_members_on_character_id"
+    t.index ["team_id"], name: "index_team_members_on_team_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -86,6 +86,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_200208) do
   add_foreign_key "fav_characters", "users"
   add_foreign_key "fav_teams", "teams"
   add_foreign_key "fav_teams", "users"
-  add_foreign_key "tem_members", "characters"
-  add_foreign_key "tem_members", "teams"
+  add_foreign_key "team_members", "characters"
+  add_foreign_key "team_members", "teams"
 end
