@@ -57,10 +57,34 @@ const UserProvider = ({children}) => {
             }
         })
     }
+
+    const Signup = (e, signup, navigate) => {
+        e.preventDefault()
+        // debugger
+        if(signup.password === signup.confirm_password) {
+            fetch('/signup', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+            body: JSON.stringify(signup)
+        })
+        .then(resp => {
+            if (resp.status === 201) {
+                resp.json().then(userObj => { 
+                    setUser(userObj)
+                    navigate('/')
+                })
+            } else {
+                resp.json().then(data => console.log(data))
+            }
+        })
+    }
+    }
     
 
     return (
-        <UserContext.Provider value={{user, setUser, fetchCurrentUser, Login, logout}}>
+        <UserContext.Provider value={{user, setUser, fetchCurrentUser, Login, logout, Signup}}>
             {children}
         </UserContext.Provider>
     )

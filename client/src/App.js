@@ -5,6 +5,7 @@ import { UserContext } from './Context/UserContext';
 import Navbar from './component/Navbar';
 import {Routes, Route} from 'react-router-dom'
 import Welcome from './component/Welcome';
+import Signup from './component/Signup'
 
 function App() {
   const {fetchCurrentUser, user, setUser} = useContext(UserContext)
@@ -15,9 +16,11 @@ function App() {
   },[])
 
   if(!user) return (
-    <>
-    <Login/>
-    </>
+    <Routes>
+      <Route path='/' element={<Welcome/>}/>
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/signup' element={<Signup/>}/>
+    </Routes>
   )
 
   

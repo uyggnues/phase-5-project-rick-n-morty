@@ -10,5 +10,7 @@ Rails.application.routes.draw do
 
   get '/authorized_user', to: 'users#show'
   post '/login', to:'sessions#login'
+  post '/signup', to: 'users#signup'
   delete '/logout', to: 'sessions#logout'
+
 end

@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react'
 import { UserContext } from '../Context/UserContext';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const Login = () => {
     const navigate = useNavigate()
@@ -22,6 +22,9 @@ const Login = () => {
             <label >Password</label>
             <input type='password' name='password' value={login.password} onChange={handleChange} />
             <input type='submit'/>
+            <div>
+                Don't have an account? Signup <Link to={'/signup'}>Here</Link>
+            </div>
         </form>
     );
 }
