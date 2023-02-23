@@ -18,19 +18,20 @@ const Login = () => {
 
 
     return (
-        <>
-        <form onSubmit={(e) => Login(e, login, navigate)}>
-            <label>Email</label>
+        <div className='form'>
+        <form className='login' onSubmit={(e) => Login(e, login, navigate)}>
+            <h1 className='LOGIN'>LOGIN</h1>
+            <label>EMAIL</label>
             <input type='text' name='email' value={login.email} onChange={handleChange}/>
-            <label >Password</label>
+            <label >PASSWORD</label>
             <input type='password' name='password' value={login.password} onChange={handleChange} />
             <input type='submit'/>
-            <div>
+            <div className='here'>
                 Don't have an account? Signup <Link to={'/signup'}>Here</Link>
             </div>
         </form>
         {/* <OauthLogin /> */}
-        </>
+        </div>
     );
 }
 
