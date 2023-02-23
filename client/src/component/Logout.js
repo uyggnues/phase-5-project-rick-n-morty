@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 const Logout = () => {
     const {logout} = useContext(UserContext)
     return (
-        <button onClick={logout}>Logout</button>
+        <button className='logout' onClick={logout}>Logout</button>
     );
 }
 

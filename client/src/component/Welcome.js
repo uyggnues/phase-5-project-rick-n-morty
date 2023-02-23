@@ -26,6 +26,7 @@ const Welcome = () => {
             <p>
                 Welcomes YOU!
             </p>
+            <div className='welcomePic'/>
         </div>
     );
 }

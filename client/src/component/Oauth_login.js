@@ -1,17 +1,19 @@
-import { useState } from 'react' 
+import { useContext } from 'react' 
 import { LoginSocialFacebook } from 'reactjs-social-login';
 import { FacebookLoginButton } from 'react-social-login-buttons';
+import { UserContext } from '../Context/UserContext';
 
 const OauthLogin = () => {
-    const [profile, setProfile] = useState(null)
+    // const [profile, setProfile] = useState(null)
+    const {user, setUser} = useContext(UserContext)
 
     return (
         <>
-            {!profile ? 
+            {!user ? 
                 <LoginSocialFacebook
                 appId='1442506773159817'
                 onResolve={response => {
-                    setProfile(response.data)
+                    setUser(response.data)
                 }}
                 onReject={error => {
                     console.log(error)
@@ -22,12 +24,11 @@ const OauthLogin = () => {
                 :
                 ''
             }
-            {profile ? 
+            {user ? 
             <div>
                 <h1>
-                    {profile.name}
+                    {user.name}
                 </h1>
-                <img src={profile.picture.data.url} alt='pfp'/>
             </div>
             :
             ''
