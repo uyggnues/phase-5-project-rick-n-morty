@@ -318,3 +318,7 @@ img {
   display: flex;
   flex-wrap: wrap;
 }
+
+h3{
+  cursor: pointer;
+}

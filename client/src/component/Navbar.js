@@ -1,10 +1,12 @@
 import React, { useRef } from 'react';
 import Logout from './Logout';
 import {FaBars, FaTimes } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
 
 const Navbar = () => {
     const navRef = useRef()
+    const navigate = useNavigate()
 
     const showNavbar = () => {
         navRef.current.classList.toggle('responsive_nav')
@@ -12,7 +14,7 @@ const Navbar = () => {
 
     return (
         <header>
-            <h3>rick and morty</h3>
+            <h3 onClick={() => navigate('/')}>rick and morty</h3>
             <nav ref={navRef}>
                 <a href='/profile'>Profile</a>
                 <a href='/#'>Characters</a>
