@@ -6,6 +6,7 @@ import Navbar from './component/Navbar';
 import {Routes, Route} from 'react-router-dom'
 import Welcome from './component/Welcome';
 import Signup from './component/Signup'
+import Profile from './component/Profile'
 
 function App() {
   const {fetchCurrentUser, user, setUser} = useContext(UserContext)
@@ -30,6 +31,7 @@ function App() {
     <Navbar />
     <Routes>
       <Route path='/' element={<Welcome />}/>
+      <Route path='/profile' element={<Profile />}/>
     </Routes>
     </>
   );

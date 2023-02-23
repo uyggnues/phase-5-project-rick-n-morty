@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_secure_password
+    has_many :teams, dependent: :destroy
     has_many :fav_characters, dependent: :destroy
     has_many :fav_teams, dependent: :destroy
     

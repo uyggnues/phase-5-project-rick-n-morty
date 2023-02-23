@@ -5,6 +5,11 @@ class UsersController < ApplicationController
         render json: @user, status: :ok
     end
 
+    def getOne
+      user = User.find(params[:id])
+      render json: user, status: :ok
+  end
+
     def signup
         user = User.create(user_params)
         if user.id

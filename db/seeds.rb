@@ -10,8 +10,8 @@ TeamMember.delete_all
 
 puts 'seeding User'
 
-User.create(name: 'Seunggyu Lee', email: 'example@example.com', password: 'password')
-
+User.create(name: 'Seunggyu Lee', email: 'example@example.com', password: 'password', pfp: '')
+u = User.all.sample
 
 puts 'seeding chararcters'
 
@@ -22,7 +22,7 @@ c = Character.all.sample
 
 puts 'seeding team'
 
-t1 = Team.create(name: 'sudoku')
+t1 = Team.create(name: 'sudoku', user: u)
 
 puts 'seeding team_member'
 5.times do

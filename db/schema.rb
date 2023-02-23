@@ -68,13 +68,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_200208) do
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_teams_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
+    t.string "pfp"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -88,4 +91,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_200208) do
   add_foreign_key "fav_teams", "users"
   add_foreign_key "team_members", "characters"
   add_foreign_key "team_members", "teams"
+  add_foreign_key "teams", "users"
 end
