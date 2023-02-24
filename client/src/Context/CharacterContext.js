@@ -1,9 +1,13 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext, Component } from "react";
+import { UserContext } from "./UserContext";
 
 const CharacterContext = createContext()
 
 const CharacterProvider = ({children}) => {
     const [characters, setCharacters] = useState([]);
+    const [url, setUrl] = useState('')
+    const {user, setUser, updatePfp} = useContext(UserContext)
+
 
     const fetchCharacters = () => {
         fetch(`/characters`)
@@ -11,11 +15,18 @@ const CharacterProvider = ({children}) => {
         .then(data => setCharacters(data))
     }
     const getOneChar = (character) => {
-        console.log(character.id)
+        // console.log(character.id)
         fetch(`/characters/${character.id}`)
         .then(resp => resp.json())
-        .then(data => console.log(data))
+        .then(data => {
+            setUrl(data.image)
+        })
     }
+    useEffect(() => {
+        if (url) {
+            updatePfp(url) 
+        }
+    }, [url, updatePfp])
 
     
 

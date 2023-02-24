@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    before_action :user_pfp, only: %i[ update ]
     skip_before_action :authorized_user, only: [:signup]
 
     def show
@@ -20,8 +21,20 @@ class UsersController < ApplicationController
         end
     end
 
+    def update_pfp
+      # debugger
+      get_user = User.find(params[:id])
+      update_user = get_user.update!(pfp: params['_json'])
+      render json: update_user, status: :accepted
+    end
+
     private
     def user_params
-        params.permit(:name, :email, :password)
+        params.permit(:name, :email, :password, :pfp)
+    end
+
+    def user_pfp
+      # debugger
+      @get_user = User.find(params[:id])
     end
 end

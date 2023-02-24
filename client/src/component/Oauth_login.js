@@ -4,9 +4,6 @@ import { FacebookLoginButton } from 'react-social-login-buttons';
 import { UserContext } from '../Context/UserContext';
 
 const OauthLogin = () => {
-    require('react-dom');
-    window.React2 = require('react');
-    console.log(window.React1, window.React2);
     // const [profile, setProfile] = useState(null)
     const {user, setUser} = useContext(UserContext)
 

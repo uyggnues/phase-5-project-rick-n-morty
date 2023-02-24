@@ -278,11 +278,12 @@ header .nav-btn{
 }
 
 img {
-  border:1px solid white;
-  border-radius: 5rem;
-  height: 100%;
-  width: 100%;
-  margin-top: 6rem;
+  /* border: 5px solid white; */
+  border-radius: 50rem;
+  height: 14.4rem;
+  width: 12.4rem;
+  /* transform: scale(1.1) */
+  /* margin-top: 6rem; */
 }
 
 .img-outline{
@@ -368,7 +369,7 @@ h3{
 }
 
 .pfpCard{
-  margin-top: 7rem;
+  margin-top: 0rem;
   height: 40rem;
   width: 45rem;
   background-color: white;

@@ -5,12 +5,12 @@ import Pfp from './Pfp';
 
 const Profile = () => {
     const [showPfp, setShowPfp] = useState(false)
-    const {fetchCurrentUser, user} = useContext(UserContext)
+    const {user} = useContext(UserContext)
     const {characters, fetchCharacters} = useContext(CharacterContext)
 
     useEffect(() => {
         fetchCharacters()
-      },[])
+      }, [])
 
     // console.log(characters)
 

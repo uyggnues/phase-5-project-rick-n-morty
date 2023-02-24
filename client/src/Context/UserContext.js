@@ -45,13 +45,14 @@ const UserProvider = ({children}) => {
         .catch(err => alert(err))
     }
 
-    const logout = () => {
+    const logout = (navigate) => {
         fetch('/logout', {
             method: 'DELETE',
         })
         .then(resp => {
             if (resp.ok) {
                     setUser(null)
+                    navigate('/')
             } else {
                 resp.json().then(messageObj => alert(messageObj.error))
             }
@@ -82,9 +83,24 @@ const UserProvider = ({children}) => {
     }
     }
     
+    const updatePfp = (url) => {
+        console.log(user)
+        fetch(`/users_pfp/${user.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(url)
+        })
+        .then(resp => {
+            if (resp.status === 202) {
+                resp.json().then(data => setUser(data))
+            }
+        })
+    }
 
     return (
-        <UserContext.Provider value={{user, setUser, fetchCurrentUser, Login, logout, Signup}}>
+        <UserContext.Provider value={{user, setUser, fetchCurrentUser, Login, logout, Signup, updatePfp}}>
             {children}
         </UserContext.Provider>
     )
