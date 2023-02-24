@@ -84,7 +84,7 @@ const UserProvider = ({children}) => {
     }
     
     const updatePfp = (url) => {
-        console.log(user)
+        // console.log(user)
         fetch(`/users_pfp/${user.id}`, {
             method: 'PATCH',
             headers: {

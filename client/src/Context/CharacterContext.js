@@ -26,7 +26,7 @@ const CharacterProvider = ({children}) => {
         if (url) {
             updatePfp(url) 
         }
-    }, [url, updatePfp])
+    }, [url])
 
     
 

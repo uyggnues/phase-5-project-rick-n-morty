@@ -4,6 +4,7 @@ import { CharacterContext } from '../Context/CharacterContext'
 import Pfp from './Pfp';
 
 const Profile = () => {
+    const [showFav, setShowFav] = useState('char')
     const [showPfp, setShowPfp] = useState(false)
     const {user} = useContext(UserContext)
     const {characters, fetchCharacters} = useContext(CharacterContext)
@@ -36,8 +37,16 @@ const Profile = () => {
                     <div className='pText'>Email: {user.email}</div>
                 </div>
             </div>
-            <div>
-                
+            <div className='bottom'>
+                <h2 onClick={() => setShowFav('char')}>Liked Characters</h2>
+                <h2 onClick={() => setShowFav('')}>Liked Teams</h2>
+                <div>
+                    {showFav === 'char' ?
+                    'fav char'
+                    :
+                    'fav team'
+                    }
+                </div>
             </div>
         </div>
     );
