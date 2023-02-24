@@ -7,6 +7,7 @@ import {Routes, Route} from 'react-router-dom'
 import Welcome from './component/Welcome';
 import Signup from './component/Signup'
 import Profile from './component/Profile'
+import Characters from './component/Characters'
 
 function App() {
   const {fetchCurrentUser, user, setUser} = useContext(UserContext)
@@ -30,8 +31,9 @@ function App() {
     <>
     <Navbar />
     <Routes>
-      <Route path='/' element={<Welcome />}/>
+      <Route path='/characters' element={<Characters />}/>
       <Route path='/profile' element={<Profile />}/>
+      <Route path='/' element={<Welcome />}/>
     </Routes>
     </>
   );

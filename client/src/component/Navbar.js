@@ -17,7 +17,7 @@ const Navbar = () => {
             <h3 onClick={() => navigate('/')}>rick and morty</h3>
             <nav ref={navRef}>
                 <a href='/profile'>Profile</a>
-                <a href='/#'>Characters</a>
+                <a href='/characters'>Characters</a>
                 <a href='/#'>Teams</a>
                 <a href='/#'>Episodes</a>
                 <a href='/#'>Your Teams</a>
