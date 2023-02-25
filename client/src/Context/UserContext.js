@@ -84,7 +84,6 @@ const UserProvider = ({children}) => {
     }
     
     const updatePfp = (url) => {
-        // console.log(user)
         fetch(`/users_pfp/${user.id}`, {
             method: 'PATCH',
             headers: {
@@ -98,9 +97,19 @@ const UserProvider = ({children}) => {
             }
         })
     }
+    console.log(user)
+    const facebook = (user) => {
+        fetch(`/facebook/${user.id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user)
+        })
+    }
 
     return (
-        <UserContext.Provider value={{user, setUser, fetchCurrentUser, Login, logout, Signup, updatePfp}}>
+        <UserContext.Provider value={{user, setUser, fetchCurrentUser, Login, logout, Signup, updatePfp, facebook}}>
             {children}
         </UserContext.Provider>
     )

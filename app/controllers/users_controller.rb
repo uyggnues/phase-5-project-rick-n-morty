@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized_user, only: [:signup]
+    skip_before_action :authorized_user, only: [:signup, :facebook]
 
     def show
         render json: @user, status: :ok
@@ -24,6 +24,16 @@ class UsersController < ApplicationController
       get_user = User.find(params[:id])
       get_user.update!(pfp: params['_json'])
       render json: get_user, status: :accepted
+    end
+
+    def facebook
+      # debugger
+      facebook_user = User.find_or_create_by(email: params[:email]) do |u|
+        u.name = params[:name] 
+        u.email = params[:email] 
+        u.password = SecureRandom.hex(16)
+        u.provider_id = params[:id]
+      end
     end
 
     private

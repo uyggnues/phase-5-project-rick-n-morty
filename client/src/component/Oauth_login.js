@@ -2,10 +2,14 @@ import { useContext } from 'react'
 import { LoginSocialFacebook } from 'reactjs-social-login';
 import { FacebookLoginButton } from 'react-social-login-buttons';
 import { UserContext } from '../Context/UserContext';
+import { useNavigate } from 'react-router-dom'
 
 const OauthLogin = () => {
     // const [profile, setProfile] = useState(null)
-    const {user, setUser} = useContext(UserContext)
+    const {user, setUser, facebook} = useContext(UserContext)
+    const navigate = useNavigate()
+
+    console.log(user)
 
     return (
         <>
@@ -13,7 +17,8 @@ const OauthLogin = () => {
                 <LoginSocialFacebook
                 appId='1442506773159817'
                 onResolve={response => {
-                    setUser(response.data)
+                    debugger
+                    facebook(response.data)
                 }}
                 onReject={error => {
                     console.log(error)
@@ -23,15 +28,6 @@ const OauthLogin = () => {
                 </LoginSocialFacebook>
                 :
                 ''
-            }
-            {user ? 
-            <div>
-                <h1>
-                    {user.name}
-                </h1>
-            </div>
-            :
-            ''
             }
         </>
     );

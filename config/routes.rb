@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#signup'
   delete '/logout', to: 'sessions#logout'
   patch '/users_pfp/:id', to: 'users#update_pfp'
+  post '/facebook/:id', to: 'users#facebook'
   # get '/user', to: 'users#show'
 
 end
