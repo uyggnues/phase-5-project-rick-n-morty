@@ -8,7 +8,7 @@ const FavCharacters = ({char}) => {
     const {user} = useContext(UserContext)
     const {fav} = useContext(CharacterContext)
     const [character, setCharacter] = useState(char.character)
-    const heartItem = user.fav_char.find(c => c.character_id === character.id) ? '💗' : '🖤'
+    const heartItem = user.fav_char.find(c => c.character_id === character.id) ? '💚'  : '🖤'
     const [heart, setHeart] = useState(heartItem)
     const [favorite, setFavorite] = useState({
         user_id: user.id,

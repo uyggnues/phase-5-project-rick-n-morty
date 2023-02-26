@@ -38,10 +38,10 @@ const CharacterProvider = ({children}) => {
             })
             .then(resp => {
                 if (resp.status === 201) {
-                    setHeart('💗')
+                    setHeart('💚')
                 } 
             })
-        } else if (heart === '💗') {
+        } else if (heart === '💚') {
             fetch(`/users/${user.id}/fav_characters/${character.id}`, {
                 method: 'DELETE',
             })
