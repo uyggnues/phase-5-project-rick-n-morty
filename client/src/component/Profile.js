@@ -2,18 +2,26 @@ import React, {useState, useEffect, useContext }from 'react';
 import { UserContext } from '../Context/UserContext'
 import { CharacterContext } from '../Context/CharacterContext'
 import Pfp from './Pfp';
+import FavCharacters from './FavCharacters';
 
 const Profile = () => {
     const [showFav, setShowFav] = useState('char')
     const [showPfp, setShowPfp] = useState(false)
     const {user} = useContext(UserContext)
-    const {characters, fetchCharacters} = useContext(CharacterContext)
+    // const [favChars, setFavChars] = useState([])
+    const {characters, fetchCharacters, favCharacters, favChars} = useContext(CharacterContext)
 
     useEffect(() => {
         fetchCharacters()
       }, [])
 
-    // console.log(characters)
+    useEffect(() => {
+        favCharacters()
+    }, [])
+
+    // console.log(favChars)
+    // const sorted = favChars.sort_by()
+    const mappedFavChars = favChars.map ( c => <FavCharacters key={c.id} char={c}/>)
 
       const mappedChars = characters.map(character => <Pfp key={character.id} character={character} />
         )
@@ -40,9 +48,9 @@ const Profile = () => {
             <div className='bottom'>
                 <h2 onClick={() => setShowFav('char')}>Liked Characters</h2>
                 <h2 onClick={() => setShowFav('')}>Liked Teams</h2>
-                <div>
+                <div className='favChar'>
                     {showFav === 'char' ?
-                    'fav char'
+                    <div className='fav_char'>{mappedFavChars}</div>
                     :
                     'fav team'
                     }

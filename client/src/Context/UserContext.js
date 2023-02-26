@@ -97,7 +97,7 @@ const UserProvider = ({children}) => {
             }
         })
     }
-    console.log(user)
+    // console.log(user)
     const facebook = (user) => {
         fetch(`/facebook/${user.id}`, {
             method: 'POST',

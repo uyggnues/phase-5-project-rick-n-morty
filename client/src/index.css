@@ -160,10 +160,10 @@ label {
   background-size: cover;
   height: 30rem;
   width: 29rem;
-  margin: auto
+  margin: auto;
 }
 /* .welcomePic:hover{
-  opacity: 90%;
+  transform: scale(1.01);
 } */
 
 .navBar{
@@ -277,6 +277,8 @@ header .nav-btn{
   background-color: black;
   display: flex;
   flex-wrap: wrap;
+  background-image: var(--mainColor);
+  border-radius: 5rem;
 }
 
 img {
@@ -373,7 +375,7 @@ h3:hover{
   margin-top: 2rem;
   /* border: 1px solid white; */
   height: 16rem;
-  width: 20rem;
+  width: 18rem;
 }
 
 .pfpCard{
@@ -408,6 +410,7 @@ h3:hover{
   margin-top: 0;
   display: flex;
   flex-wrap: wrap;
+  border-radius: 5rem;
 }
 
 h2{
@@ -418,5 +421,67 @@ h2{
 }
 
 h2:hover{
-  transform: scale(1.1)
+  transform: scale(1.1);
+  color: cyan;
+}
+
+
+.like_btn{
+  height: 3rem;
+  font-size: 2rem;
+  margin-top: 2rem;
+  background-color: transparent;
+  border: none
+}
+
+.favChar{
+  /* border: 1px solid white; */
+  width: 100%;
+  height: 96.5%;
+}
+
+.fav_char{
+  border-radius: 0rem 0rem 5rem 5rem;
+  border: 1px solid white;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: center;
+  gap: 3rem;
+  padding-top: 3rem;
+  background-color: black;
+  overflow-x: auto;
+}
+
+.fav_char::-webkit-scrollbar{ 
+  display: none;
+}
+
+.fav_char_name{
+  font-size: 1.5em;
+  text-align: center;
+  /* border: 1px solid; */
+  width: 15rem;
+  /* color:rgb(26, 146, 26); */
+}
+
+.fav_char_img{
+  border: 5px solid white;
+  margin-left: 1rem;
+}
+
+.fav_char_img:hover{
+  transform: scale(1.1);
+}
+
+.fav_char_img:active{
+  transform: scale(1);
+}
+
+.like_btn_in_profile{
+  font-size: 2rem;
+  border:none;
+  background-color: transparent;
+  margin-left: 6rem;
 }

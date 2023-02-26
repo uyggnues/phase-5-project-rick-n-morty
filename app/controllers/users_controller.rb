@@ -36,6 +36,12 @@ class UsersController < ApplicationController
       end
     end
 
+    def user_favorites
+      user = User.find(params[:id])
+      user_fav = user.fav_characters
+      render json: user_fav.order(:character_id), status: :ok
+    end
+
     private
     def user_params
         params.permit(:name, :email, :password, :pfp)

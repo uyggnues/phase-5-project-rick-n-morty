@@ -6,18 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import { UserProvider } from './Context/UserContext'
 import { CharacterProvider } from './Context/CharacterContext';
 import {BrowserRouter as Router} from 'react-router-dom'
-// import { GoogleOAuthProvider } from '@react-oauth/google'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-        <UserProvider>
-          <CharacterProvider>
-            <Router>
-                <App />
-            </Router>
-          </CharacterProvider>
-        </UserProvider>
+  <UserProvider>
+    <CharacterProvider>
+      <Router>
+        <App />
+      </Router>
+    </CharacterProvider>
+  </UserProvider>
   // </React.StrictMode>
 );
 

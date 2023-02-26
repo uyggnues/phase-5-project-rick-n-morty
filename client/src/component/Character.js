@@ -1,6 +1,19 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { CharacterContext } from '../Context/CharacterContext';
+import { UserContext } from '../Context/UserContext';
 
 const Character = ({character}) => {
+    const {user} = useContext(UserContext)
+    const {fav} = useContext(CharacterContext)
+    // console.log(user)
+    const heartItem = user.fav_char.find(c => c.character_id === character.id) ? '💗' : '🖤'
+    const [heart, setHeart] = useState(heartItem)
+    const [favorite, setFavorite] = useState({
+        user_id: user.id,
+        character_id: character.id
+    })
+
+    
 
     return (
         <div className='char-card'>
@@ -15,6 +28,7 @@ const Character = ({character}) => {
                     <p className='cardText'>type: {character.character_class}</p>
                 }
             </div>
+                <button className='like_btn' onClick={() => fav(heart, setHeart, favorite, character)}>{heart}</button>
         </div>
     );
 }

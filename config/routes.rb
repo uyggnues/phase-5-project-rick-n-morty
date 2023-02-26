@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   patch '/users_pfp/:id', to: 'users#update_pfp'
   post '/facebook/:id', to: 'users#facebook'
   # get '/user', to: 'users#show'
-
+  delete '/users/:user_id/fav_characters/:character_id', to: 'fav_characters#delete_fav'
+  get '/users/:id/fav_characters', to: 'users#user_favorites'
 end

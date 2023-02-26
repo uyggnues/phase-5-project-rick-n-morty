@@ -9,7 +9,7 @@ const OauthLogin = () => {
     const {user, setUser, facebook} = useContext(UserContext)
     const navigate = useNavigate()
 
-    console.log(user)
+    // console.log(user)
 
     return (
         <>
