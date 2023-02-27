@@ -1,11 +1,13 @@
 import { createContext, useState, useEffect, useContext, Component } from "react";
 import { UserContext } from "./UserContext";
+import TeamMembers from "../component/TeamMembers";
 
 const CharacterContext = createContext()
 
 const CharacterProvider = ({children}) => {
     const [characters, setCharacters] = useState([]);
     const [favChars, setFavChars] = useState([])
+    const [teamMem, setTeamMem] = useState([])
     const [url, setUrl] = useState('')
     const {user, setUser, updatePfp} = useContext(UserContext)
 
@@ -57,6 +59,18 @@ const CharacterProvider = ({children}) => {
         }
     }
 
+    const fetchOneChar = (chars) => {
+        // console.log(chars)
+        fetch(`https://rickandmortyapi.com/api/character/${chars}`)
+        .then(resp => resp.json())
+        .then( data => {
+            setTeamMem(current => [...current, data])
+            // console.log(data)
+        })
+    }
+    // console.log(teamMem)
+
+
     const favCharacters = () => {
         fetch(`/users/${user.id}/fav_characters`)
         .then(resp => resp.json())
@@ -66,7 +80,7 @@ const CharacterProvider = ({children}) => {
     
 
     return (
-        <CharacterContext.Provider value={{characters, setCharacters, fetchCharacters, getOneChar, fav, favCharacters, favChars}}>
+        <CharacterContext.Provider value={{characters, setCharacters, fetchCharacters, getOneChar, fav, favCharacters, favChars, fetchOneChar, teamMem}}>
             {children}
         </CharacterContext.Provider>
     )

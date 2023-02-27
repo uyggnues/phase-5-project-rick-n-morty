@@ -8,6 +8,7 @@ import Welcome from './component/Welcome';
 import Signup from './component/Signup'
 import Profile from './component/Profile'
 import Characters from './component/Characters'
+import MakeTeams from './component/MakeTeams';
 
 function App() {
   const {fetchCurrentUser, user, setUser} = useContext(UserContext)
@@ -34,6 +35,7 @@ function App() {
       <Route path='/characters' element={<Characters />}/>
       <Route path='/profile' element={<Profile />}/>
       <Route path='/' element={<Welcome />}/>
+      <Route path='/make_teams' element={<MakeTeams />}/>
     </Routes>
     </>
   );

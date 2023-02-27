@@ -18,8 +18,9 @@ const Navbar = () => {
             <nav ref={navRef}>
                 <a href='/profile'>Profile</a>
                 <a href='/characters'>Characters</a>
-                <a href='/#'>Teams</a>
+                <a href='/teams'>Teams</a>
                 <a href='/#'>Episodes</a>
+                <a href='/make_teams'>Make Teams</a>
                 <a href='/#'>Your Teams</a>
                 <Logout />
                 <button className='nav-btn nav-close-btn' onClick={showNavbar}>

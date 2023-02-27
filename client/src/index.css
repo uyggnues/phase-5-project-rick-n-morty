@@ -485,3 +485,82 @@ h2:hover{
   background-color: transparent;
   margin-left: 6rem;
 }
+
+.char-card-in-team{
+  border: 1px solid white;
+  height: inherit;
+  width: 15rem;
+  background-image: linear-gradient(to right,#327906, #526e05, #767f03, #868f03);
+  border-radius: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.char-card-in-team:hover{
+  transform: scale(1.1);
+}
+
+.char-img-in-team{
+  height: 10rem;
+  width: 10rem;
+  margin-top: 1rem;
+  border: 5px solid rgb(255, 255, 255);
+}
+
+.cardText-in-team{
+  font-size: 1.5rem;
+  text-align: center;
+  width: 5rem;
+}
+
+.char-in-team{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 5rem;
+}
+
+.canvas{
+  height: 20rem;
+  width: 80%;
+  background-color: white;
+  margin-left: 10%;
+  border: 1rem solid #767f03;
+  border-radius: 5rem;
+  display: flex;
+}
+
+#team_name{
+  margin-bottom: 1rem;
+  margin-top: 5rem;
+  width: 40%;
+  margin-left: 30%;
+}
+
+.team_making_field{
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.team_making_field_2{
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid; */
+  justify-content: center;
+}
+
+.team_mem_img{
+  height: 8rem;
+  width: 8rem;
+  margin-top: 1rem;
+  border: 5px solid #868f03;
+}
+
+.team_mem_text{
+  font-size: 2rem;
+  text-align: center;
+}
