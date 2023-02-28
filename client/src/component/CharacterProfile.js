@@ -30,7 +30,11 @@ const CharacterProfile = () => {
                 </div>
             </div>
             <div className='bottom'>
-                
+                <h2 className='starred_episodes'>starred episodes</h2>
+                <div className='favChar'>
+                <div className='fav_char'>{}</div>
+                    
+                </div>
             </div>
         </div>
     );

@@ -1,6 +1,14 @@
-response = HTTParty.get('https://rickandmortyapi.com/api/character')
+nums = (1...42)
+character_array = []
 
-characters = response["results"]
+nums.map do |n|
+    response = HTTParty.get("https://rickandmortyapi.com/api/character?page=#{n}")
+    characters = response["results"]
+    character_array += characters
+end
+
+# response = HTTParty.get('https://rickandmortyapi.com/api/character')
+
 
 # puts characters
 User.delete_all
@@ -15,7 +23,7 @@ u = User.all.sample
 
 puts 'seeding chararcters'
 
-characters.map {
+character_array.map {
     |c| Character.create(name: c["name"], species: c["species"], gender: c["gender"], image: c["image"], character_class: c["type"], origin: c["origin"])
 }
 c = Character.all.sample

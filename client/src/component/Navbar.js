@@ -22,6 +22,7 @@ const Navbar = () => {
                 <a href='/#'>Episodes</a>
                 <a href='/make_teams'>Make Teams</a>
                 <a href='/#'>Your Teams</a>
+                <a href='/#'>Battle</a>
                 <Logout />
                 <button className='nav-btn nav-close-btn' onClick={showNavbar}>
                     <FaTimes />

@@ -6,7 +6,7 @@ class Character < ApplicationRecord
     has_many :teams, through: :team_members
     has_many :episodes, through: :character_episodes
 
-    validates :name, presence: true
+    validates :name, presence: true, uniqueness: true
     validates :species, presence: true
     validates :gender, presence: true
     validates :image, presence: true
