@@ -350,7 +350,6 @@ h3:hover{
   /* border: 1px solid white; */
   justify-content: center;
   gap: 3rem;
-  margin-top: 5rem;
 }
 
 .char-img{
@@ -584,4 +583,11 @@ h2:hover{
   flex-wrap: wrap;
   background-image: var(--mainColor);
   border-radius: 5rem;
+}
+
+.search{
+  width: 40%;
+  margin: auto;
+  margin-top: 5rem;
+  text-align: center;
 }
