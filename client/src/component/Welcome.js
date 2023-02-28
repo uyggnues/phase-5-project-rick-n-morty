@@ -1,10 +1,10 @@
 import {useEffect, useState, useContext } from 'react'
 import { UserContext } from '../Context/UserContext' 
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 const Welcome = () => {
     const {user} = useContext(UserContext)
-
+    const navigate = useNavigate()
 
     if (!user) return(
         <div className='welcome'>
@@ -26,7 +26,7 @@ const Welcome = () => {
             <p>
                 Welcomes YOU!
             </p>
-            <div className='welcomePic'/>
+            <div className='welcomePic' onClick={() => navigate('/characters')}/>
         </div>
     );
 }

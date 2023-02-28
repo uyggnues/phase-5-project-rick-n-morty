@@ -562,5 +562,21 @@ h2:hover{
 
 .team_mem_text{
   font-size: 2rem;
+  width: 15rem;
   text-align: center;
+}
+
+.characterProfile{
+  color: white;
+  height: 80rem;
+  border: 1px solid white;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 3rem;
+  display: flex;
+  background-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  background-image: var(--mainColor);
+  border-radius: 5rem;
 }

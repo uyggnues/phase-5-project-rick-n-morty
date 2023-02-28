@@ -76,7 +76,6 @@ const CharacterProvider = ({children}) => {
         .then(resp => resp.json())
         .then(data => setFavChars(data))
     }
-
     
 
     return (

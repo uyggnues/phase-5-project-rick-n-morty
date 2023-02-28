@@ -17,7 +17,8 @@ const OauthLogin = () => {
                 <LoginSocialFacebook
                 appId='1442506773159817'
                 onResolve={response => {
-                    debugger
+                    // debugger
+                    console.log(response)
                     facebook(response.data)
                 }}
                 onReject={error => {
