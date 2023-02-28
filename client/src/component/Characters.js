@@ -15,6 +15,23 @@ const Characters = () => {
         fetchCharacters()
     }, [])
 
+    const toTop = () => {
+        // console.log('click')
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // for smoothly scrolling
+          });
+    }
+    const [showToTop, setShowToTop] =useState(false)
+    const myScrollFunc = () => {
+        let y = window.scrollY
+        if ( y >= 1000 ) {
+            setShowToTop(true)
+        } else {
+            setShowToTop(false)
+        }
+    }
+    window.addEventListener("scroll", myScrollFunc)
     return (
         <div className='char_page'>
             <div className='search'>
@@ -23,6 +40,12 @@ const Characters = () => {
             <div className='chars'>
                 {mappedCharacters}
             </div>
+            {
+            showToTop ?
+            <button className='to_top' onClick={() => toTop()}>⬆</button>
+                :
+                null
+            }
         </div>
     );
 }

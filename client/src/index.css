@@ -591,3 +591,23 @@ h2:hover{
   margin-top: 5rem;
   text-align: center;
 }
+
+.to_top{
+  /* display: none; */
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  cursor: pointer;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 10rem;
+  border: 2px solid white;
+  font-size: 3rem;
+  background-image: var(--mainColor);
+  color: white;
+}
+
+.to_top:hover{
+  transform: scale(1.1);
+}
