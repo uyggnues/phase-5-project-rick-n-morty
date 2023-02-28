@@ -79,7 +79,7 @@ const CharacterProvider = ({children}) => {
     
 
     return (
-        <CharacterContext.Provider value={{characters, setCharacters, fetchCharacters, getOneChar, fav, favCharacters, favChars, fetchOneChar, teamMem}}>
+        <CharacterContext.Provider value={{characters, setCharacters, fetchCharacters, getOneChar, fav, favCharacters, favChars, fetchOneChar, teamMem, setTeamMem}}>
             {children}
         </CharacterContext.Provider>
     )

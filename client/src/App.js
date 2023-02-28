@@ -10,6 +10,7 @@ import Profile from './component/Profile'
 import Characters from './component/Characters'
 import MakeTeams from './component/MakeTeams';
 import CharacterProfile from './component/CharacterProfile';
+import Teams from './component/Teams';
 
 function App() {
   const {fetchCurrentUser, user, setUser} = useContext(UserContext)
@@ -38,6 +39,7 @@ function App() {
       <Route path='/' element={<Welcome />}/>
       <Route path='/make_teams' element={<MakeTeams />}/>
       <Route path='/characters/:character_id' element={<CharacterProfile />}/>
+      <Route path='/teams' element={<Teams />}/>
     </Routes>
     </>
   );

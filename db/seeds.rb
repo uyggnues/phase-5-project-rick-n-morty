@@ -28,11 +28,3 @@ character_array.map {
 }
 c = Character.all.sample
 
-puts 'seeding team'
-
-t1 = Team.create(name: 'sudoku', user: u)
-
-puts 'seeding team_member'
-5.times do
-    TeamMember.create(team: t1, character: c)
-end

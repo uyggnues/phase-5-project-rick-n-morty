@@ -1,9 +1,10 @@
 class TeamSerializer < ActiveModel::Serializer
-  attributes :id, :name, :user
+  attributes :id, :name, :team_members
 
-  has_many :team_members
+  has_one :user
+  # has_many :team_members
 
-  def user
-    self.object.team_members.user
+  def team_members
+    self.object.team_members.map(&:character)
   end
 end
