@@ -1,6 +1,6 @@
 class FavTeamSerializer < ActiveModel::Serializer
   attributes :id
 
-  has_one :team
-  has_one :user
+  belongs_to :team
+  belongs_to :user
 end

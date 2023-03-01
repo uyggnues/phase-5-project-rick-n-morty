@@ -11,6 +11,7 @@ import Characters from './component/Characters'
 import MakeTeams from './component/MakeTeams';
 import CharacterProfile from './component/CharacterProfile';
 import Teams from './component/Teams';
+import UpdateProfile from './component/UpdateProfile';
 
 function App() {
   const {fetchCurrentUser, user, setUser} = useContext(UserContext)
@@ -34,12 +35,13 @@ function App() {
     <>
     <Navbar />
     <Routes>
-      <Route path='/characters' element={<Characters />}/>
-      <Route path='/profile' element={<Profile />}/>
-      <Route path='/' element={<Welcome />}/>
-      <Route path='/make_teams' element={<MakeTeams />}/>
       <Route path='/characters/:character_id' element={<CharacterProfile />}/>
+      <Route path='/update_profile' element={<UpdateProfile />}/>
+      <Route path='/characters' element={<Characters />}/>
+      <Route path='/make_teams' element={<MakeTeams />}/>
+      <Route path='/profile' element={<Profile />}/>
       <Route path='/teams' element={<Teams />}/>
+      <Route path='/' element={<Welcome />}/>
     </Routes>
     </>
   );

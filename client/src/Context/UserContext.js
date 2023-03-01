@@ -108,8 +108,31 @@ const UserProvider = ({children}) => {
         })
     }
 
+    const updateUser = (e, updateP, navigate, setUpdateP, user) => {
+        e.preventDefault()
+        if (user.key.length <= 40) {
+            fetch(`/users/${user.id}`, {
+                method: "PATCH",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updateP)
+            })
+            .then(resp => {
+                if (resp.status === 202) {
+                    resp.json().then( data => {
+                        setUpdateP(data)
+                        navigate('/profile')
+                    })
+                }
+            })
+        } else {
+            console.log('key word cannot reach beyond 40 characters')
+        }
+    }
+
     return (
-        <UserContext.Provider value={{user, setUser, fetchCurrentUser, Login, logout, Signup, updatePfp, facebook}}>
+        <UserContext.Provider value={{user, setUser, fetchCurrentUser, Login, logout, Signup, updatePfp, facebook, updateUser}}>
             {children}
         </UserContext.Provider>
     )

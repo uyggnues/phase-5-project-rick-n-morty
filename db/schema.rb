@@ -80,6 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_200208) do
     t.string "pfp"
     t.string "provider_id"
     t.string "password_digest"
+    t.string "key_words"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,9 +1,12 @@
-import { createContext, useState, useEffect } from "react";
-
+import { createContext, useState, useEffect, useContext } from "react";
+import { UserContext } from './UserContext';
     const TeamContext = createContext()
 
     const TeamProvider = ({children}) => {
+        const {user} = useContext(UserContext)
         const [teams, setTeams] = useState([])
+        const [favTeams, setFavTeams] = useState([])
+        // const [FTeams, setFTeams] = useState([])
 
     const fetchTeams = () => {
         fetch('/teams')
@@ -11,9 +14,9 @@ import { createContext, useState, useEffect } from "react";
         .then(data => setTeams(data))
     }
 
-    const createTeam = (e, team, teamMem, setTeam, setTeamMem) => {
+    const createTeam = (e, team, teamMem, setTeam, setTeamMem, setBlackListedIds) => {
         // debugger
-        console.log(teamMem)
+        // console.log(teamMem)
         e.preventDefault()
 
         fetch('/teams', {
@@ -37,6 +40,7 @@ import { createContext, useState, useEffect } from "react";
             name: ''
         })
         setTeamMem([])
+        setBlackListedIds([])
         
     }
 
@@ -62,10 +66,44 @@ import { createContext, useState, useEffect } from "react";
         })
     }
 
-    
+    const fav = (heart, setHeart, favorite, t) => {
+        // console.log(t)
+        if (heart === '🖤') {
+            fetch('/fav_teams', {
+                method: 'POST',
+                headers: { 'Content-Type' : 'application/json' },
+                body: JSON.stringify(favorite)
+            })
+            .then(resp => {
+                if (resp.status === 201) {
+                    setHeart('💚')
+                } 
+            })
+        } else if (heart === '💚') {
+            fetch(`/users/${user.id}/fav_teams/${t.id}`, {
+                method: 'DELETE',
+            })
+            .then(resp => {
+                if (resp.status === 204) {
+                    setHeart('🖤')
+                    setFavTeams(current => {
+                        const teamId = current.findIndex(ele => ele.team.id === t.id)
+                        return [...current.slice(0, teamId), ...current.slice(teamId + 1)]
+                    })
+                }
+            })
+        }
+    }
+
+    const fetchFavTeams = () => {
+        fetch(`/users/${user.id}/fav_teams`)
+        .then(resp => resp.json())
+        .then(data => setFavTeams(data))
+    }
+
 
     return (
-        <TeamContext.Provider value={{createTeam, fetchTeams, teams}}>
+        <TeamContext.Provider value={{createTeam, fetchTeams, teams, fav, fetchFavTeams, favTeams}}>
             {children}
         </TeamContext.Provider>
     )

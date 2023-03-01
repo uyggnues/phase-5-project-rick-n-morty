@@ -52,6 +52,7 @@ html {
   justify-content: center;
   margin: auto;
   margin-top: 5rem;
+  box-shadow: inset 0 25px 40px 0 rgba(0, 0, 0, 0.3);
   background-image: linear-gradient(to bottom right,#327906, #526e05, #767f03, #868f03);
 }
 
@@ -113,13 +114,18 @@ input[type='text'], input[type='password'], .letsGo, .here, .signupText {
   background: #555; 
 }
 
-.letsGo {
+.letsGo, .update_btn{
 height: 5rem;
 width: 13rem;
 font-size: 2rem;
 border-radius: 50rem;
 font-family: ultra;
 margin: auto;
+cursor: pointer;
+}
+
+.update_btn{
+  margin-bottom: 3rem;
 }
 
 .letsGo:hover {
@@ -279,6 +285,7 @@ header .nav-btn{
   flex-wrap: wrap;
   background-image: var(--mainColor);
   border-radius: 5rem;
+  box-shadow: inset 0 25px 40px 0 rgba(0, 0, 0, 0.5);
 }
 
 img {
@@ -306,24 +313,94 @@ img {
   /* border:1px solid white; */
   height: 3rem;
   width: 30rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .pInfo{
-  height: 10rem;
-  width: 30rem;
+  height: 6rem;
+  width: 23rem;
   display: flex;
   flex-wrap: wrap;
-  margin-left: 7rem;
-  margin-top: 6.5rem;
+  margin-left: 4rem;
+  margin-top: 5rem;
   /* border: 1px solid white; */
+}
+
+.info_info{
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid white; */
+  grid-column: 1 / 10;
+  height: 18rem;
+}
+
+.key_box{
+  height: 5rem;
+  width: 100%;
+  /* border: 1px solid white; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  gap: 1.5rem;
+  padding: 1rem;
+  border-radius: 5rem;
+  /* margin-top: 1rem; */
+  margin-left: 3rem
+}
+
+.info_border{
+  /* border: 1px solid white; */
+  height: 18rem;
+  width: 100%;
+  display: grid;
+  flex-wrap: wrap;
+}
+
+.edit_bar_box{
+  position: absolute;
+  border: 1px solid white;
+  height: 20%;
+  width: 20rem;
+  background-image: var(--mainColor);
+  right: 5rem;
+  box-shadow: inset 0 25px 40px 0 rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 1rem;
+}
+
+.edit-btn{
+  width: 100%;
+  color: white;
+  border: none;
+  background-color: transparent;
+  font-size: 3rem;
+  margin-top: 1rem;
+  cursor: pointer
+}
+.edit-btn:hover{
+  transform: scale(1.1);
+}
+
+.update_profile_btn{
+  float: right;
+  margin-top: 3rem;
+  margin-right: 3rem;
+  height: 2.5rem;
+  font-size: 2rem;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  grid-column: 10;
 }
 .top{
   width: 100%;
   height: 22rem;
   /* border: 1px solid white; */
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  /* box-shadow: inset 0 25px 40px 0 rgba(0, 0, 0, 0.3); */
 }
 
 h3{
@@ -430,12 +507,17 @@ h2:hover{
 }
 
 
-.like_btn{
+.like_btn, .team_like_btn{
   height: 3rem;
   font-size: 2rem;
   margin-top: 2rem;
   background-color: transparent;
   border: none
+}
+
+.team_like_btn{
+  width: 100%;
+  text-align: center;
 }
 
 .favChar{
@@ -633,13 +715,16 @@ h2:hover{
 }
 
 .team{
-  display: flex;
   width: 80%;
   margin-left: 10%;
   border: 1rem solid #767f03;
-  height: 20rem;
+  height: 23rem;
   border-radius: 5rem;
   background-color: white;
+}
+
+.team_{
+  display: flex;
 }
 
 .team_border{
@@ -654,4 +739,42 @@ h2:hover{
 }
 .team_outline{
   margin-top: 5rem;
+  justify-content: center;
+}
+
+.fav_teams{
+  border-radius: 0rem 0rem 5rem 5rem;
+  border: 1px solid white;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  gap: 3rem;
+  padding-top: 3rem;
+  background-color: black;
+  overflow-x: auto;
+}
+
+/* .profile_update_form{
+  color: white;
+  height: 50rem;
+  border: 1px solid white;
+  width: 60%;
+  margin-left: 20%;
+  margin-top: 3rem;
+  display: flex;
+  background-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  background-image: var(--mainColor);
+  border-radius: 5rem;
+} */
+
+.key{
+  border: 1px solid white;
+  border-radius: 5rem;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  font-size: 1.5rem;
+  background-color: black;
 }

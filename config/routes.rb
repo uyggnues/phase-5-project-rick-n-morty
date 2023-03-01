@@ -17,4 +17,7 @@ Rails.application.routes.draw do
   # get '/user', to: 'users#show'
   delete '/users/:user_id/fav_characters/:character_id', to: 'fav_characters#delete_fav'
   get '/users/:id/fav_characters', to: 'users#user_favorites'
+
+  delete '/users/:user_id/fav_teams/:team_id', to: 'fav_teams#delete_fav'
+  get '/users/:id/fav_teams', to: 'users#user_favorite_teams'
 end

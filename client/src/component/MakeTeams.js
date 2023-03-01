@@ -62,7 +62,7 @@ const MakeTeams = () => {
 
     return (
         <div className='team-page'>
-            <form onSubmit={(e) => createTeam(e, team, teamMem, setTeam, setTeamMem)} className='teamForm'>
+            <form onSubmit={(e) => createTeam(e, team, teamMem, setTeam, setTeamMem, setBlackListedIds)} className='teamForm'>
                 <input id='team_name' type='text' placeholder='your team name here' name='name' value={team.name} onChange={handleChange}/>
                 <div className='canvas' onDrop={handleDrop} onDragOver={handleDragOver}>
                     <TeamMembers cha={teamMem} />

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import Logout from './Logout';
-import {FaBars, FaTimes } from 'react-icons/fa'
+import { FaBars, FaTimes } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
 

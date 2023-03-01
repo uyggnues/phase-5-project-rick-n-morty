@@ -18,7 +18,7 @@ TeamMember.delete_all
 
 puts 'seeding User'
 
-User.create(name: 'Seunggyu Lee', email: 'example@example.com', password: 'password', pfp: '')
+User.create(name: 'Seunggyu Lee', email: 'example@example.com', password: 'password', pfp: '', key_words: 'lol, legend')
 u = User.all.sample
 
 puts 'seeding chararcters'
