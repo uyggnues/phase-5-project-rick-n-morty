@@ -7,6 +7,17 @@ nums.map do |n|
     character_array += characters
 end
 
+e_nums = (1...3)
+episode_array = []
+
+e_nums.map do |e|
+    response = HTTParty.get("https://rickandmortyapi.com/api/episode?page=#{e}")
+    episodes = response["results"]
+    episode_array += episodes
+end
+
+# puts episode_array
+
 # response = HTTParty.get('https://rickandmortyapi.com/api/character')
 
 
@@ -28,3 +39,8 @@ character_array.map {
 }
 c = Character.all.sample
 
+puts 'seeding episodes'
+
+episode_array.map {
+    |e| Episode.create(name: e["name"], air_date: e["air_date"], episode: e["episode"])
+}
