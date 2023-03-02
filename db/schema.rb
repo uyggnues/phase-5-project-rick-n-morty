@@ -12,11 +12,11 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_02_22_200208) do
   create_table "character_episodes", force: :cascade do |t|
-    t.integer "charcter_id", null: false
+    t.integer "character_id", null: false
     t.integer "episode_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["charcter_id"], name: "index_character_episodes_on_charcter_id"
+    t.index ["character_id"], name: "index_character_episodes_on_character_id"
     t.index ["episode_id"], name: "index_character_episodes_on_episode_id"
   end
 
@@ -85,7 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_200208) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "character_episodes", "charcters"
+  add_foreign_key "character_episodes", "characters"
   add_foreign_key "character_episodes", "episodes"
   add_foreign_key "fav_characters", "characters"
   add_foreign_key "fav_characters", "users"

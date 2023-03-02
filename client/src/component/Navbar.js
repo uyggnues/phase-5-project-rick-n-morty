@@ -19,7 +19,7 @@ const Navbar = () => {
                 <a href='/profile'>Profile</a>
                 <a href='/characters'>Characters</a>
                 <a href='/teams'>Teams</a>
-                <a href='/#'>Episodes</a>
+                <a href='/episodes'>Episodes</a>
                 <a href='/make_teams'>Make Teams</a>
                 <a href='/#'>Your Teams</a>
                 <a href='/#'>Battle</a>

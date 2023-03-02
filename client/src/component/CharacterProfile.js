@@ -1,15 +1,22 @@
 import { useLocation } from 'react-router-dom';
 import React, { useState, useEffect, useContext } from 'react'
 import { CharacterContext } from '../Context/CharacterContext';
+import { EpisodeContext } from '../Context/EpisodeContext';
+import StarredEpisodes from './StarredEpisodes';
 
 const CharacterProfile = () => {
     const location = useLocation()
     const character = location.state.character
     const {} = useContext(CharacterContext)
+    const {fetchStarredEpisodes, episodes} = useContext(EpisodeContext)
 
+    useEffect(() => {
+        fetchStarredEpisodes(character)
+    }, [])
 
+    console.log(episodes)
 
-    // console.log(character)
+    const mappedCharEpisodes = episodes.map ( ce => <StarredEpisodes key={ce.id} ce={ce}/>)
 
     return (
         <div className='profile'>
@@ -25,14 +32,14 @@ const CharacterProfile = () => {
                     {character.character_class === '' ?
                     null
                     :
-                    <p className='cardText'>type: {character.character_class}</p>
+                    <div className='cardText'>type: {character.character_class}</div>
                     }
                 </div>
             </div>
             <div className='bottom'>
                 <h2 className='starred_episodes'>starred episodes</h2>
                 <div className='favChar'>
-                <div className='fav_char'>{}</div>
+                <div className='fav_char'>{mappedCharEpisodes}</div>
                     
                 </div>
             </div>

@@ -44,3 +44,11 @@ puts 'seeding episodes'
 episode_array.map {
     |e| Episode.create(name: e["name"], air_date: e["air_date"], episode: e["episode"])
 }
+
+puts 'seeding char_eps'
+
+character_array.map {
+    |c| c['episode'].map {
+        |e| CharacterEpisode.create(character_id: c['id'], episode_id: e.split('/').last)
+    }
+}
