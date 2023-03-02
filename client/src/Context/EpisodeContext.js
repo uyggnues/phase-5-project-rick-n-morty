@@ -6,6 +6,7 @@ import { resolvePath } from "react-router-dom";
         const [episodes, setEpisodes] = useState([])
         const [eps, setEps] = useState([])
         const [EProfile, setEProfile] = useState([])
+        const [chars, setChars] = useState([])
 
 
     const fetchStarredEpisodes = (character) => {
@@ -26,10 +27,16 @@ import { resolvePath } from "react-router-dom";
     .then(data => setEProfile(data))
    }
 
+   const fetchStarringCharacters = (epId) => {
+    fetch(`/ep_ch/${epId}`)
+    .then(resp => resp.json())
+    .then(data => setChars(data))
+   }
+
 
 
     return (
-        <EpisodeContext.Provider value={{fetchStarredEpisodes, episodes, fetchEpisodes, eps, fetchEpisodeProfile, EProfile}}>
+        <EpisodeContext.Provider value={{fetchStarredEpisodes, episodes, fetchEpisodes, eps, fetchEpisodeProfile, EProfile, fetchStarringCharacters, chars}}>
             {children}
         </EpisodeContext.Provider>
     )

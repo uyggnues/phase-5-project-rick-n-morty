@@ -1,17 +1,23 @@
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { EpisodeContext } from '../Context/EpisodeContext';
+import StarringCharacters from './StarringCharacters';
 
 const EpisodeProfile = () => {
     const params = useParams()
     const epId = parseInt(params.episode_id)
-    const { fetchEpisodeProfile, EProfile } = useContext(EpisodeContext)
+    const { fetchEpisodeProfile, EProfile, fetchStarringCharacters, chars } = useContext(EpisodeContext)
 
     useEffect(() => {
         fetchEpisodeProfile(epId)
     }, [])
 
-    console.log(EProfile)
+    useEffect(() => {
+        fetchStarringCharacters(epId)
+    }, [])
+    // console.log(chars)
+
+    const mappedStarringCharacters = chars.map( sc => <StarringCharacters key={sc.id} sc={sc} />)
 
     return (
         <div className='epBox'>
@@ -23,7 +29,7 @@ const EpisodeProfile = () => {
             <div className='bottom'>
                 <h2 className='starred_character'>starring Characters</h2>
                 <div className='favChar'>
-                <div className='fav_char'>{}</div>
+                <div className='fav_char'>{mappedStarringCharacters}</div>
                     
                 </div>
             </div>
