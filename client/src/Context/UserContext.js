@@ -126,11 +126,7 @@ const UserProvider = ({children}) => {
                 if (resp.status === 202) {
                     resp.json().then( data => {
                         console.log(data)
-                        // setUpdateP({
-                        //     name: user.name,
-                        //     email: user.email,
-                        //     key_words: user.key,
-                        // })
+                        setUpdateP(data)
                         navigate('/profile')
                     })
                 }
@@ -144,9 +140,11 @@ const UserProvider = ({children}) => {
         fetch(`/users/${user.id}`, {
             method: 'DELETE',
         })
-        .then(data => {
-            setUser(data)
-            navigate('/')
+        .then(resp => {
+            if (resp.status === 204) {
+                setUser(null)
+                navigate('/')
+            }
         })
     }
 

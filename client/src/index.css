@@ -761,7 +761,8 @@ h2:hover{
   padding-right: 10px;
   padding-top: 10px;
   font-size: 1.5rem;
-  background-color: black;
+  /* background-color: black; */
+  background-image: linear-gradient(to right,rgb(98, 12, 98), rgb(137, 21, 137), rgb(188, 35, 188), rgb(227, 24, 227));
 }
 
 .btn{
@@ -780,7 +781,8 @@ h2:hover{
   padding: 5px;
   background-color: transparent;
   border: none;
-  color: white
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .warning-btn:hover{
