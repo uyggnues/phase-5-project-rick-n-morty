@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # before_action :find_user, only: %i[ show update destroy ] 
+    before_action :find_user, only: %i[ destroy ] 
     skip_before_action :authorized_user, only: [:signup, :facebook]
 
     def show
@@ -51,16 +51,23 @@ class UsersController < ApplicationController
 
     def update
       # debugger
-      update_user = @user.update!(user_params)
-      render json: update_user, status: :accepted
+      # get_user = User.find(params[:id])
+      updated_user = @user.update!(user_params)
+      render json: updated_user, status: :accepted
+    end
+
+    def destroy
+      @userz.destroy
+      head :no_content
     end
 
     private
-    # def find_user
-    #   @user = User.find(params[:id])
-    # end
+
+    def find_user
+      @userz = User.find(params[:id])
+    end
 
     def user_params
-        params.permit(:name, :email, :key_words)
+        params.permit(:name, :email, :password, :key_words)
     end
 end

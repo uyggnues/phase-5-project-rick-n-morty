@@ -60,6 +60,7 @@ const UserProvider = ({children}) => {
     }
 
     const Signup = (e, signup, navigate) => {
+        console.log(signup)
         e.preventDefault()
         // debugger
         if(signup.password === signup.confirm_password) {
@@ -93,7 +94,10 @@ const UserProvider = ({children}) => {
         })
         .then(resp => {
             if (resp.status === 202) {
-                resp.json().then(data => setUser(data))
+                resp.json().then(data => {
+                    console.log(data)
+                    setUser(data)
+                })
             }
         })
     }
@@ -121,7 +125,12 @@ const UserProvider = ({children}) => {
             .then(resp => {
                 if (resp.status === 202) {
                     resp.json().then( data => {
-                        setUpdateP(data)
+                        console.log(data)
+                        // setUpdateP({
+                        //     name: user.name,
+                        //     email: user.email,
+                        //     key_words: user.key,
+                        // })
                         navigate('/profile')
                     })
                 }
@@ -131,8 +140,18 @@ const UserProvider = ({children}) => {
         }
     }
 
+    const deleteUser = (user, navigate) => {
+        fetch(`/users/${user.id}`, {
+            method: 'DELETE',
+        })
+        .then(data => {
+            setUser(data)
+            navigate('/')
+        })
+    }
+
     return (
-        <UserContext.Provider value={{user, setUser, fetchCurrentUser, Login, logout, Signup, updatePfp, facebook, updateUser}}>
+        <UserContext.Provider value={{user, setUser, fetchCurrentUser, Login, logout, Signup, updatePfp, facebook, updateUser, deleteUser}}>
             {children}
         </UserContext.Provider>
     )

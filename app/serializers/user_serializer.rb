@@ -17,6 +17,8 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def key
-    self.object.key_words.split(',')
+    if self.object.key_words != nil
+      self.object.key_words.split(',')
+    end
   end
 end
