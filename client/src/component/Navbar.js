@@ -22,7 +22,7 @@ const Navbar = () => {
                 <a href='/episodes'>Episodes</a>
                 <a href='/make_teams'>Make Teams</a>
                 <a href='/my_teams'>My Teams</a>
-                <a href='/#'>Battle</a>
+                <a href='/battle'>Battle</a>
                 <Logout />
                 <button className='nav-btn nav-close-btn' onClick={showNavbar}>
                     <FaTimes />

@@ -884,3 +884,43 @@ h2:hover{
 .team-btn:hover{
   transform: scale(1.1);
 }
+
+.battle_title{
+  color: red;
+  font-size: 4rem;
+  text-align: center;
+  margin-top: 3rem;
+  
+}
+.battle{
+  display: flex;
+  border: 1px solid white;
+  height: 60rem;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  border-radius: 5rem;
+  background-color: rgba(0, 0, 0, 0.39);
+  /* box-shadow: inset 300px 300px 300px 300px rgba(0, 0, 0, 0.3); */
+  /* background-image: linear-gradient(to right,rgb(0, 185, 96), rgb(0, 181, 66), rgb(46, 173, 0), rgb(155, 216, 0)); */
+}
+
+.battle_team{
+  border: 1px solid white;
+  display: flex;
+  height: 45rem;
+  margin-top: 3rem;
+}
+
+.next_btn, .previous_btn{
+  height: 5rem;
+  width: 5rem;
+  /* margin-top: 38%; */
+}
+
+.battle_team_info{
+  border: 1px solid white;
+  width: 90%;
+  margin-left: 5%;
+}
