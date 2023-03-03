@@ -12,6 +12,11 @@ class TeamsController < ApplicationController
         render json: team, status: :created
     end
 
+    def user_team
+        ut = Team.where(params[:user_id])
+        render json: ut, status: :ok
+    end
+
     private
     def team_params
         params.permit(:name, :user_id)

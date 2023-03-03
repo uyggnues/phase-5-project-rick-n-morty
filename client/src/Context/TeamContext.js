@@ -6,7 +6,7 @@ import { UserContext } from './UserContext';
         const {user} = useContext(UserContext)
         const [teams, setTeams] = useState([])
         const [favTeams, setFavTeams] = useState([])
-        // const [FTeams, setFTeams] = useState([])
+        const [userTeams, setUserTeams] = useState([])
 
     const fetchTeams = () => {
         fetch('/teams')
@@ -101,9 +101,16 @@ import { UserContext } from './UserContext';
         .then(data => setFavTeams(data))
     }
 
+    const fetchUserTeam = (user) => {
+        // console.log(ut.id)
+        fetch(`/user_team/${user.id}`)
+        .then(resp => resp.json())
+        .then(data => setUserTeams(data))
+    }
+
 
     return (
-        <TeamContext.Provider value={{createTeam, fetchTeams, teams, fav, fetchFavTeams, favTeams}}>
+        <TeamContext.Provider value={{createTeam, fetchTeams, teams, fav, fetchFavTeams, favTeams, fetchUserTeam, userTeams}}>
             {children}
         </TeamContext.Provider>
     )

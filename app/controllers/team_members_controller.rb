@@ -12,6 +12,11 @@ class TeamMembersController < ApplicationController
         render json: team_member, status: :created
     end
 
+    # def user_teamM
+    #     utm = TeamMember.find(params[:team_id])
+    #     render json: utm, status: :ok
+    # end
+
     private
 
     def team_member_params

@@ -861,6 +861,26 @@ h2:hover{
 .e_profile_top{
   width: 100%;
   justify-content: center;
-  height: 20rem;
-  
+  height: 20rem; 
+}
+
+.team_btn{
+  /* border: 1px solid; */
+  display: flex;
+  justify-content: center;
+  /* text-align: center; */
+  gap: 3rem;
+}
+
+.team-btn{
+  font-size: 2rem;
+  padding: 1rem;
+  border-radius: 5rem;
+  color: white;
+  background-image: var(--mainColor);
+  box-shadow: inset 0 25px 40px 0 rgba(0, 0, 0, 0.3);
+}
+
+.team-btn:hover{
+  transform: scale(1.1);
 }
