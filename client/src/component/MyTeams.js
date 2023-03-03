@@ -12,7 +12,7 @@ const MyTeams = () => {
     }, [])
     // console.log(userTeams)
 
-    const mappedUserTeams = userTeams.map( ut => <MyTeam key={ut.id} ut={ut}/>)
+    const mappedUserTeams = userTeams ? userTeams.map( ut => <MyTeam key={ut.id} ut={ut}/>) : null
     return (
         <div>
             {mappedUserTeams}

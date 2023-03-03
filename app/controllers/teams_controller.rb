@@ -6,6 +6,11 @@ class TeamsController < ApplicationController
         render json: teams, status: :ok
     end
 
+    def show
+        team = Team.find(params[:id])
+        render json: team, status: :ok
+    end
+
     def create
         # debugger
         team = Team.create!(team_params)
@@ -15,6 +20,13 @@ class TeamsController < ApplicationController
     def user_team
         ut = Team.where(params[:user_id])
         render json: ut, status: :ok
+    end
+
+    def destroy
+        # debugger
+        team = Team.find(params[:id])
+        team.destroy
+        head :no_content
     end
 
     private

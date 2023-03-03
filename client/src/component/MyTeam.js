@@ -1,12 +1,16 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { TeamContext } from '../Context/TeamContext';
 import MyTeamMembers from './MyTeamMembers';
+import { useNavigate } from 'react-router-dom'
 
 const MyTeam = ({ut}) => {
+    const navigate = useNavigate()
+    const [tm, setTm] = useState(ut.team_members)
+    const { deleteTeam } = useContext(TeamContext)
+    
+      const mappedUt = tm !== [] ? tm.map( utm => <MyTeamMembers key={utm.id} utm={utm}/>) : null
 
     console.log(ut)
-
-    const mappedUt = ut.team_members.map( utm => <MyTeamMembers key={utm.id} utm={utm}/>)
 
     return (
         <div className='team_outline'>
@@ -16,8 +20,8 @@ const MyTeam = ({ut}) => {
               {mappedUt}
             </div>
             <div className='team_btn'>
-                <button className='team-btn'>Update</button>
-                <button className='team-btn'>delete</button>
+                <button className='team-btn' onClick={() => navigate(`/update_teams/${ut.id}`)}>Update</button>
+                <button className='team-btn' onClick={() => deleteTeam(ut, setTm)}>delete</button>
             </div>
           </div>
         </div>
