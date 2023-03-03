@@ -893,7 +893,7 @@ h2:hover{
   
 }
 .battle{
-  display: flex;
+  /* display: flex; */
   border: 1px solid white;
   height: 60rem;
   width: 90%;
