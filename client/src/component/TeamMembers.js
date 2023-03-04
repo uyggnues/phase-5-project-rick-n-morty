@@ -7,7 +7,7 @@ const TeamMembers = ({cha}) => {
     // console.log(cha)
 
 
-    const mappedTeamMembers = cha.map( m => <TeamMember key={m.id} m={m}/>)
+    const mappedTeamMembers = cha && cha.map( m => <TeamMember key={m.id} m={m}/>)
 
     return (
         <div className='team_making_field'>

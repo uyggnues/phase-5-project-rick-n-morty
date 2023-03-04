@@ -24,13 +24,7 @@ const UpdateTeam = () => {
     useEffect(() => {
         fetchOneTeam(teamId)
     }, [])
-    
-    // console.log(team.team_members)
-    // useEffect(() => {
-    //     if(team.team_members !== []){
-    //         team.team_members.map( tm => setChars(current => [...current, tm]))
-    //     }
-    // },[])
+  
 
     useEffect(() => {
         fetchCharacters()
@@ -54,19 +48,12 @@ const UpdateTeam = () => {
 
         }
     }
-    // console.log(chars)
     const filteredCharacters = characters.filter(char => char.name.toLowerCase().includes(searchInput.toLowerCase()))
 
     const mappedCharacters = filteredCharacters.map( c => <TeamCharacter key={c.id} c={c} handleDrag={handleDrag}/>)
 
     
-    // console.log(parseInt(chars))
-    // teamMem.map( m => parseInt(chars) === m.id)
-    useEffect(() => {
-        if (chars !== []) {
-            fetchOneChar(chars)
-        }
-    },[chars])
+    teamMem.map( m => parseInt(chars) === m.id)
 
     const handleChange = (e) => {
         setUpdatingTeam({...updatingTeam, [e.target.name]:e.target.value})
@@ -75,10 +62,10 @@ const UpdateTeam = () => {
 
     return (
         <div className='team-page'>
-            <form onSubmit={(e) => (e, team, teamMem, setUpdatingTeam, setTeamMem, setBlackListedIds)} className='teamForm'>
-                <input id='team_name' type='text' placeholder='your team name here' name='name' value={team.name} onChange={handleChange}/>
+            <form onSubmit={(e) => console.log(e, team, teamMem, setUpdatingTeam, setTeamMem, setBlackListedIds)} className='teamForm'>
+                <input id='team_name' type='text' placeholder='your team name here' name='name' value={team?.name || 'name'} onChange={handleChange}/>
                 <div className='canvas' onDrop={handleDrop} onDragOver={handleDragOver}>
-                    <TeamMembers cha={teamMem}/>
+                    <TeamMembers cha={team.team_members}/>
                 </div>
                 <button className='createTeam'>UPDATE!</button>
             </form>
