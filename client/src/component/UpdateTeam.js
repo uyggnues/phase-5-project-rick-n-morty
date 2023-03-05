@@ -11,7 +11,7 @@ const UpdateTeam = () => {
     const {characters, fetchCharacters, fetchOneChar, teamMem, setTeamMem} = useContext(CharacterContext)
     const {fetchOneTeam, team} = useContext(TeamContext)
     const {user} = useContext(UserContext)
-    const [chars, setChars] = useState([])
+    // const [chars, setChars] = useState([])
     const [searchInput, setSearchInput] = useState('')
     const [blackListedIds, setBlackListedIds] = useState([])
     const params = useParams()
@@ -54,16 +54,21 @@ const UpdateTeam = () => {
     const mappedCharacters = filteredCharacters.map( c => <TeamCharacter key={c.id} c={c} handleDrag={handleDrag}/>)
 
     
-    teamMem.map( m => parseInt(chars) === m.id)
+    // teamMem.map( m => parseInt(chars) === m.id)
 
     const handleChange = (e) => {
         setUpdatingTeam({...updatingTeam, [e.target.name]:e.target.value})
     }
-
+    // console.log(team.team_members)
     const removeTeamMember = (e) => {
         const charType = e.dataTransfer.getData('charType')
-        console.log(charType)
+        if (charType !== null) {
+            // debugger
+            team.team_members = team.team_members.filter( m => m.id !== parseInt(charType))
+        }
+        return team.team_members
     }
+
 
     return (
         <div className='team-page'>
@@ -77,7 +82,7 @@ const UpdateTeam = () => {
             <div className='search'>
                 <input className='search_bar' type='text' value={searchInput} onChange={(e) => setSearchInput(e.target.value)} placeholder='search for...'/>
             </div>
-            <div className='char-in-team' onDragOver={handleDragOver} onDrop={removeTeamMember}>
+            <div className='char-in-team' onDragOver={handleDragOver} onDrop={ removeTeamMember}>
                 {mappedCharacters}
             </div>
         </div>

@@ -4,7 +4,7 @@ import TeamMember from './TeamMember';
 
 const TeamMembers = ({cha, handleDrag}) => {
 
-    console.log(cha)
+    // console.log(cha)
 
 
     const mappedTeamMembers = cha && cha.map( m => <TeamMember key={m.id} m={m} handleDrag={handleDrag}/>)
