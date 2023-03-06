@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const EnemyTeams = ({e, et}) => {
-    console.log(et)
+    // console.log(et)
     const mappedETM = e.team_members.map(etm => 
         // console.log(etm.name)
         e.team_members.includes(etm) ? 

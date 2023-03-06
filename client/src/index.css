@@ -1021,16 +1021,31 @@ h2:hover{
 .BG{
   display: flex;
   justify-content: center;
-  gap: 5rem;
+  gap: 2rem;
 }
 
 .enemy_display{
   display: flex;
   /* flex-wrap: wrap; */
+  width: 45rem;
   justify-content: center;
   /* border: 1px solid rgb(183, 44, 44); */
   height: 100%;
-  margin-top: 2rem;
-  margin-right: 0rem;
+  margin-top: 1rem;
+  margin-left: 2rem;
   gap: 1rem;
+}
+
+.battle_previous_btn, .battle_next_btn{
+  font-size: 4rem;
+  height: 1rem;
+  width: 1rem;
+  color: white;
+  background-color: transparent;
+  border: none;
+  margin-top: 4rem;
+}
+
+.battle_previous_btn:hover, .battle_next_btn:hover{
+  color: red;
 }

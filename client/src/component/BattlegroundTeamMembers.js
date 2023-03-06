@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { TeamContext } from '../Context/TeamContext';
 import EnemyTeams from './EnemyTeams';
-import { ImArrowRight, ImArrowLeft } from 'react-icons/im'
+import { RiArrowDropRightFill, RiArrowDropLeftFill } from 'react-icons/ri'
 
 const BattlegroundTeamMembers = ({user, t}) => {
     const {fetchEnemyTeam, enemyTeams} = useContext(TeamContext)
@@ -12,7 +12,7 @@ const BattlegroundTeamMembers = ({user, t}) => {
         fetchEnemyTeam(user)
     },[])
 
-    console.log(enemyTeams)
+    // console.log(enemyTeams)
     
     const mappedBattleTeamM = t.team_members.map( tm => 
             t.team_members.includes(tm) ?
@@ -57,9 +57,9 @@ const BattlegroundTeamMembers = ({user, t}) => {
             </div>
             <p>vs</p>
             <div className='enemy_display'> 
-                <button className='previous_btn' onClick={() => previous()}><ImArrowLeft/></button>
+                <button className='battle_previous_btn' onClick={() => previous()}><RiArrowDropLeftFill/></button>
                 {mappedEnemyTeams[i]}
-                <button className='next_btn' onClick={() => next()}><ImArrowRight/></button>
+                <button className='battle_next_btn' onClick={() => next()}><RiArrowDropRightFill/></button>
             </div>
         </div>
     );
