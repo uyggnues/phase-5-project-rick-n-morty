@@ -11,7 +11,7 @@ const Battle = () => {
         <div key={t.id} className='battle_info_text'>
             <p>{t.name}</p>
             <div>
-                <BattleTeamMembers user={user} />
+                <BattleTeamMembers user={user} tId={t.id}/>
             </div>
         </div>
         )
