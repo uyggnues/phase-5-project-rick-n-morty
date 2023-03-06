@@ -17,6 +17,7 @@ import EpisodeProfile from './component/EpisodeProfile';
 import MyTeams from './component/MyTeams';
 import UpdateTeam from './component/UpdateTeam';
 import Battle from './component/Battle';
+import Battleground from './component/Battleground';
 
 function App() {
   const {fetchCurrentUser, user, setUser} = useContext(UserContext)
@@ -43,6 +44,7 @@ function App() {
       <Route path='/episode/:episode_id' element={<EpisodeProfile />}/>
       <Route path='/update_teams/:team_id' element={<UpdateTeam />}/>
       <Route path='/update_profile' element={<UpdateProfile />}/>
+      <Route path='/battleground' element={<Battleground />}/>
       <Route path='/characters' element={<Characters />}/>
       <Route path='/make_teams' element={<MakeTeams />}/>
       <Route path='/episodes' element={<Episodes />}/>

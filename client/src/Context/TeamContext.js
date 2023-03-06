@@ -103,10 +103,10 @@ import { UserContext } from './UserContext';
     }
 
     const fetchUserTeam = (user) => {
-        // console.log(ut.id)
+        // console.log(user.id)
         fetch(`/user_team/${user.id}`)
         .then(resp => resp.json())
-        .then(data => setUserTeams(data))
+        .then(data => setUserTeams(current => [...current, data]))
     }
 
     const fetchOneTeam = (teamId) => {
@@ -120,12 +120,13 @@ import { UserContext } from './UserContext';
         fetch(`/teams/${ut.id}`, {
             method: 'DELETE'
         })
-        // .then(resp => resp.json())
-        .then(data => {
-            setUserTeams(current => {
-            current.filter( c => c.d !== data.id)
-            })
-            setTm([])
+        .then(resp => {
+            if (resp.status === 204) {
+                setUserTeams(current => {
+                        const teamId = current.findIndex(ele => ele.id === ut.id)
+                        return [...current.slice(0, teamId), ...current.slice(teamId + 1)]
+                })
+            }
         })
     }
 

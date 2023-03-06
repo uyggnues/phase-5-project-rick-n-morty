@@ -18,7 +18,7 @@ class TeamsController < ApplicationController
     end
 
     def user_team
-        ut = Team.where(params[:user_id])
+        ut = Team.find_by(user_id: params[:user_id])
         render json: ut, status: :ok
     end
 

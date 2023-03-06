@@ -9,7 +9,7 @@ const CharacterProfile = () => {
     const character = location.state.character
     const {} = useContext(CharacterContext)
     const {fetchStarredEpisodes, episodes} = useContext(EpisodeContext)
-
+    
     useEffect(() => {
         fetchStarredEpisodes(character)
     }, [])

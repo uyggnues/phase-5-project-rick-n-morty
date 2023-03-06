@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 
-const BattleTeamMembers = ({user, t}) => {
+const BattlegroundTeamMembers = ({user, t}) => {
     const [BP, setBP] = useState([])
 
     // console.log(t)
@@ -8,8 +8,8 @@ const BattleTeamMembers = ({user, t}) => {
     const mappedBattleTeamM = t.team_members.map( tm => 
             t.team_members.includes(tm) ?
             <div key={tm.id} className='team_display_teamM'>
-                <img src={tm.image} alt='img' className='battle_M_img'/>
-                <p className='battle_display_text'>{tm.name}</p>
+                <img src={tm.image} alt='img' className='battleground_M_img'/>
+                <p className='battleground_display_text'>{tm.name}</p>
             </div>
             :
             null
@@ -23,17 +23,20 @@ const BattleTeamMembers = ({user, t}) => {
     },[])
     
     // console.log(BP)
-    const sum = BP.length > 1 ? BP.reduce((a, b) => {return (a + b)}) : null
+    // const sum = BP.length > 1 ? BP.reduce((a, b) => {return (a + b)}) : null
 
 
     return (
-        <div>
+        <div className='BG'>
             <div className='teamM_display'>
                 {mappedBattleTeamM}
             </div>
-            <p className='battle_power'>battle Power: {sum}</p>
+            <p>vs</p>
+            <div className='enemy_display'> 
+                {mappedBattleTeamM}
+            </div>
         </div>
     );
 }
 
-export default BattleTeamMembers;
+export default BattlegroundTeamMembers;
