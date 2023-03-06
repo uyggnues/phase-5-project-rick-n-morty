@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :password, :key, :teams, :pfp, :fav_char, :fav_teams
+  attributes :id, :name, :email, :password, :key, :teams, :pfp, :fav_char, :fav_teams, :team_members
 
   # has_many :fav_characters
   # has_many :fav_teams
@@ -19,6 +19,14 @@ class UserSerializer < ActiveModel::Serializer
   def key
     if self.object.key_words != nil
       self.object.key_words.split(',')
+    end
+  end
+
+  def team_members
+    self.object.teams.map do |team|
+      team.team_members.map do |member|
+        member.character
+      end
     end
   end
 end

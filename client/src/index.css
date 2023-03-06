@@ -915,12 +915,46 @@ h2:hover{
 
 .next_btn, .previous_btn{
   height: 5rem;
-  width: 5rem;
-  /* margin-top: 38%; */
+  width: 5%;
+  margin-top: 18rem;
 }
 
 .battle_team_info{
   border: 1px solid white;
   width: 90%;
-  margin-left: 5%;
+  /* margin-left: 5%; */
+}
+
+.battle_info_text{
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.teamM_display{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* border: 1px solid rgb(183, 44, 44); */
+  height: 100%;
+  margin-top: 2rem;
+  /* gap: 5%; */
+}
+
+.battle_M_img{
+  border: 10px solid #767f03;
+  /* width: 70%; */
+  /* height: 80% */
+}
+
+.team_display_teamM{
+  width: 20%;
+  /* border: 1px solid blue */
+}
+
+.battle_display_text{
+  font-size: 2rem;
+}
+
+.battle_power{
+  color: red
 }
