@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/ch_ep/:character_id', to: 'character_episodes#starred_episodes'
   get '/ep_ch/:episode_id', to: 'character_episodes#starring_characters'
   get '/user_team/:user_id', to: 'teams#user_team'
+  get '/enemy/:user_id', to: 'teams#enemy_team'
   get '/users/:id/fav_characters', to: 'users#user_favorites'
   
   post '/login', to:'sessions#login'

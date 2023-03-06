@@ -9,7 +9,7 @@ const Battleground = () => {
     const { user } = useContext(UserContext)
     const location = useLocation()
     const index = location.state.index
-    console.log(index)
+    // console.log(index)
 
     const mappedUserTeams = userTeams.map( ut => 
         <div key={ut.id} className='battleground_info_text'>

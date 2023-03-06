@@ -29,6 +29,12 @@ class TeamsController < ApplicationController
         head :no_content
     end
 
+    def enemy_team
+        # debugger
+        et = Team.where.not(user_id: params[:user_id])
+        render json: et, status: :ok
+    end
+
     private
     def team_params
         params.permit(:name, :user_id)
