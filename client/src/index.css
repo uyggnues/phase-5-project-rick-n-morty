@@ -1052,7 +1052,7 @@ h2:hover{
 }
 
 .battle_previous_btn:hover, .battle_next_btn:hover{
-  color: red;
+  color: rgb(0, 255, 0);
 }
 
 .battle_info{

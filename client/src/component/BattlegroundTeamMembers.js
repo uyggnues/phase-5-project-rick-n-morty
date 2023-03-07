@@ -15,7 +15,7 @@ const BattlegroundTeamMembers = ({user, t}) => {
         fetchEnemyTeam(user)
     },[])
 
-    // console.log(enemyTeams)
+    // console.log(i)
     
     const mappedBattleTeamM = t.team_members.map( tm => 
             t.team_members.includes(tm) ?
@@ -38,19 +38,21 @@ const BattlegroundTeamMembers = ({user, t}) => {
         <EnemyTeams key={e.id} e={e} et={e}/>
     )
 
-    // const ct = enemyTeams[i]
+    // console.log(enemyTeams[i])
     const ct = enemyTeams !== undefined ? enemyTeams[i] : null
     
     useEffect(() => {
-        if (ct !== undefined) { ct.team_members.map( etm => 
-            EBP.length < 5 ? setEBP(current => [...current,etm.name.length * etm.origin.length]) : null
+        // console.log(ct)
+        if (ct !== undefined) { 
+            ct.team_members.map( etm => 
+            EBP.length < 5 ? setEBP(current => [...current, etm.name.length * etm.origin.length]) : null
             )}
     },[ct])
-        console.log(i)
-    // console.log(enemyBP)
+    console.log(EBP)
 
     // EBP.length < 5 ? setEBP(current => [...current, t.name.length * t.origin.length]) : null
     const next = () => {
+        setEBP([])
         if (i >= enemyTeams.length - 1) {
             setI(0)
         } else {
@@ -59,6 +61,7 @@ const BattlegroundTeamMembers = ({user, t}) => {
     }
 
     const previous = () => {
+        setEBP([])
         if (i <= 0) {
             setI(enemyTeams.length - 1)
         } else {
@@ -67,10 +70,6 @@ const BattlegroundTeamMembers = ({user, t}) => {
     }
 
     const sum = BP.length > 1 ? BP.reduce((a, b) => {return (a + b)}) : null
-    // const eSum = EBP.length > 1 ? EBP.reduce((a, b) => {return (a + b)}) : null
-    console.log(EBP)
-    // console.log(BP)
-    // console.log(results)
 
     const winner = (BI) => {
         if ( BP[BI] > EBP[BI]) {

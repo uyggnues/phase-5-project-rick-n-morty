@@ -10,9 +10,9 @@ const MyTeam = ({ut}) => {
     const { deleteTeam } = useContext(TeamContext)
     const { user } = useContext(UserContext)
     
-      const mappedUt = tm !== [] ? tm.map( utm => <MyTeamMembers key={utm.id} utm={utm}/>) : null
+    const mappedUt = tm !== [] ? tm.map( utm => <MyTeamMembers key={utm.id} utm={utm}/>) : null
 
-    // console.log(ut.id)
+    // console.log(ut)
   
     return (
         <div className='team_outline'>

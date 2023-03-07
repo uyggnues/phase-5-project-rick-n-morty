@@ -107,7 +107,7 @@ import { UserContext } from './UserContext';
         // console.log(user.id)
         fetch(`/user_team/${user.id}`)
         .then(resp => resp.json())
-        .then(data => setUserTeams(current => [...current, data]))
+        .then(data => setUserTeams(data))
     }
 
     const fetchOneTeam = (teamId) => {
