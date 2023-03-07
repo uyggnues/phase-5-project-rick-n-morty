@@ -10,6 +10,7 @@ const CharacterProvider = ({children}) => {
     const [teamMem, setTeamMem] = useState([])
     const [url, setUrl] = useState('')
     const {user, setUser, updatePfp} = useContext(UserContext)
+    const [TM, setTM] = useState(null)
 
 
     const fetchCharacters = () => {
@@ -68,6 +69,16 @@ const CharacterProvider = ({children}) => {
             // console.log(data)
         })
     }
+
+    const fetchOneCharU = (chars) => {
+        // console.log(chars)
+        fetch(`https://rickandmortyapi.com/api/character/${chars}`)
+        .then(resp => resp.json())
+        .then( data => {
+            setTM(data)
+            // console.log(data)
+        })
+    }
     // console.log(teamMem)
 
 
@@ -79,7 +90,7 @@ const CharacterProvider = ({children}) => {
     
 
     return (
-        <CharacterContext.Provider value={{characters, setCharacters, fetchCharacters, getOneChar, fav, favCharacters, favChars, fetchOneChar, teamMem, setTeamMem}}>
+        <CharacterContext.Provider value={{characters, setCharacters, fetchCharacters, getOneChar, fav, favCharacters, favChars, fetchOneChar, teamMem, setTeamMem, fetchOneCharU, TM, setTM}}>
             {children}
         </CharacterContext.Provider>
     )

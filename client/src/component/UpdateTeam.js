@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 
 
 const UpdateTeam = () => {
-    const {characters, fetchCharacters, fetchOneChar, teamMem, setTeamMem} = useContext(CharacterContext)
+    const {characters, fetchCharacters, fetchOneCharU, TM, setTM} = useContext(CharacterContext)
     const {fetchOneTeam, team} = useContext(TeamContext)
     const {user} = useContext(UserContext)
     // const [chars, setChars] = useState([])
@@ -16,6 +16,7 @@ const UpdateTeam = () => {
     const [blackListedIds, setBlackListedIds] = useState([])
     const params = useParams()
     const teamId = parseInt(params.team_id)
+    const [ttm, setTtm] = useState([])
     const [updatingTeam, setUpdatingTeam] = useState({
         name: team.name,
         user_id: user.id,
@@ -25,7 +26,7 @@ const UpdateTeam = () => {
         fetchOneTeam(teamId)
     }, [])
 
-    // console.log(team.team_members)
+    // console.log(teamMem)
   
     useEffect(() => {
         fetchCharacters()
@@ -42,13 +43,22 @@ const UpdateTeam = () => {
     const handleDrop = (e) => {
         const charType = e.dataTransfer.getData('charType')
         // console.log(charType, blackListedIds)
-        if (team.team_members.length < 5 && !blackListedIds.includes(charType)){
+        if (ttm.length < 5 && !blackListedIds.includes(charType) && TM !== null){
             setBlackListedIds(current => [...current, charType])
             // debugger
-            fetchOneChar(parseInt(charType))
-            team.team_members += charType
+            fetchOneCharU(parseInt(charType))
         }
     }
+    // console.log(TM)
+    useEffect(() => {
+        // TM.map( mem => 
+            // console.log(TM)
+            if (TM !== null) {
+                setTtm(current => [...current, TM])
+            }
+            // )
+        },[TM])
+        
     const filteredCharacters = characters.filter(char => char.name.toLowerCase().includes(searchInput.toLowerCase()))
 
     const mappedCharacters = filteredCharacters.map( c => <TeamCharacter key={c.id} c={c} handleDrag={handleDrag}/>)
@@ -59,23 +69,32 @@ const UpdateTeam = () => {
     const handleChange = (e) => {
         setUpdatingTeam({...updatingTeam, [e.target.name]:e.target.value})
     }
-    // console.log(team.team_members)
+
+    
+
     const removeTeamMember = (e) => {
         const charType = e.dataTransfer.getData('charType')
         if (charType !== null) {
             // debugger
-            team.team_members = team.team_members.filter( m => m.id !== parseInt(charType))
+            // setBlackListedIds(ttm.filter( m => m.id !== parseInt(charType)))
+            setTtm(ttm.filter( m => m.id !== parseInt(charType)))
         }
-        return team.team_members
     }
+    // console.log(ttm)
+    console.log(ttm)
+    useEffect(() => {
+        if(team.team_members !== undefined) {
+            team.team_members.map( m => setTtm(current => [...current, m]))
+        }
+    },[team.team_members])
 
 
     return (
         <div className='team-page'>
-            <form onSubmit={(e) => console.log(e, team, teamMem, setUpdatingTeam, setTeamMem, setBlackListedIds)} className='teamForm'>
+            <form onSubmit={(e) => console.log(e, team, TM, setUpdatingTeam, setTM, setBlackListedIds)} className='teamForm'>
                 <input id='team_name' type='text' placeholder='your team name here' name='name' value={team?.name || 'name'} onChange={handleChange}/>
                 <div className='canvas' onDrop={handleDrop} onDragOver={handleDragOver}>
-                    <TeamMembers cha={team.team_members} handleDrag={handleDrag}/>
+                    <TeamMembers cha={ttm !== undefined ? ttm : null} handleDrag={handleDrag}/>
                 </div>
                 <button className='createTeam'>UPDATE!</button>
             </form>
