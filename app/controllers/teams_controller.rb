@@ -37,6 +37,13 @@ class TeamsController < ApplicationController
         render json: et, status: :ok
     end
 
+    def update_team
+        # debugger
+        team = Team.find(params[:team][:id])
+        team.update!(team_params)
+        render json: team, status: :accepted
+    end
+
     private
     def team_params
         params.permit(:name, :user_id)

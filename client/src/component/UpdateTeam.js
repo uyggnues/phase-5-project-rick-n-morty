@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 
 const UpdateTeam = () => {
     const {characters, fetchCharacters, fetchOneCharU, TM, setTM} = useContext(CharacterContext)
-    const {fetchOneTeam, team} = useContext(TeamContext)
+    const {fetchOneTeam, team, updateTeam} = useContext(TeamContext)
     const {user} = useContext(UserContext)
     // const [chars, setChars] = useState([])
     const [searchInput, setSearchInput] = useState('')
@@ -18,6 +18,7 @@ const UpdateTeam = () => {
     const teamId = parseInt(params.team_id)
     const [ttm, setTtm] = useState([])
     const [updatingTeam, setUpdatingTeam] = useState({
+        id: teamId,
         name: team.name,
         user_id: user.id,
     })
@@ -26,7 +27,7 @@ const UpdateTeam = () => {
         fetchOneTeam(teamId)
     }, [])
 
-    // console.log(teamId)
+    // console.log(team.id)
   
     useEffect(() => {
         fetchCharacters()
@@ -53,14 +54,11 @@ const UpdateTeam = () => {
             fetchOneCharU(parseInt(charType))
         }
     }
-    // console.log(TM)
+    // console.log(ttm)
     useEffect(() => {
-        // TM.map( mem => 
-            // console.log(TM)
             if (TM !== null) {
                 setTtm(current => [...current, TM])
             }
-            // )
         },[TM])
         
     const filteredCharacters = characters.filter(char => char.name.toLowerCase().includes(searchInput.toLowerCase()))
@@ -92,11 +90,12 @@ const UpdateTeam = () => {
         }
     },[team.team_members])
 
+    // console.log(blackListedIds)
 
     return (
         <div className='team-page'>
-            <form onSubmit={(e) => console.log(e, team, TM, setUpdatingTeam, setTM, setBlackListedIds)} className='teamForm'>
-                <input id='team_name' type='text' placeholder='your team name here' name='name' value={team?.name || 'name'} onChange={handleChange}/>
+            <form onSubmit={(e) => updateTeam(e, updatingTeam, teamId, ttm)} className='teamForm'>
+                <input id='team_name' type='text' placeholder='your team name here' name='name' value={updatingTeam?.name || team.name} onChange={handleChange}/>
                 <div className='canvas' onDrop={handleDrop} onDragOver={handleDragOver}>
                     <TeamMembers cha={ttm !== undefined ? ttm : null} handleDrag={handleDrag}/>
                 </div>

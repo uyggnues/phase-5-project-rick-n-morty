@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   post '/oauth', to: 'users#oauth'
 
   patch '/users_pfp/:id', to: 'users#update_pfp'
+  patch '/updateTeam/:id', to: 'teams#update_team'
+  patch '/update_team_members/:id', to: 'team_members#update_team_members'
   
   delete '/users/:user_id/fav_characters/:character_id', to: 'fav_characters#delete_fav'
   delete '/logout', to: 'sessions#logout'

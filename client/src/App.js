@@ -24,7 +24,6 @@ function App() {
 
   useEffect(() => {
     fetchCurrentUser()
-    // .then()
   },[])
 
   // console.log(user)

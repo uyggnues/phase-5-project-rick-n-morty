@@ -17,10 +17,7 @@ import { UserContext } from './UserContext';
     }
 
     const createTeam = (e, team, teamMem, setTeam, setTeamMem, setBlackListedIds) => {
-        // debugger
-        // console.log(teamMem)
         e.preventDefault()
-
         fetch('/teams', {
             method: 'POST',
             headers: {
@@ -29,13 +26,11 @@ import { UserContext } from './UserContext';
             body: JSON.stringify(team)
         })
         .then(resp => {
-            // console.log(resp)
             if (resp.status === 201) {
                 resp.json().then(data => setTeams(current => {
                     teamMem.map(m => createTeamMember(m, data))
                     return [...current, data]
                 }))
-                // console.log('created')
             }
         })
         setTeam({
@@ -63,6 +58,54 @@ import { UserContext } from './UserContext';
         })
         .then(resp => {
             if (resp.status === 201) {
+                resp.json().then(data => console.log(data))
+            }
+        })
+    }
+
+    const updateTeam = (e, updatingTeam, teamId, ttm) => {
+        e.preventDefault()
+        // console.log(ttm)
+        // debugger
+        fetch(`/updateTeam/${teamId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatingTeam)
+        })
+        .then(resp => {
+            if (resp.status === 202) {
+                resp.json().then(data => 
+                    // {debugger}
+                    setTeams(current => {
+                    data.team_members.map( m => ttm.map( mttm => updateTeamMember(e, m, data, mttm)))
+                    return [...current, data]
+                })
+                )
+            }
+        })
+    }
+
+    const updateTeamMember = (e, m, data, mttm) => {
+        e.preventDefault()
+        const member = {
+            team_id: data.id,
+            character_id: mttm.id,
+            search_id: m.id,
+        }
+        // debugger
+
+        // debugger
+        fetch(`/update_team_members/${data.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(member)
+        })
+        .then(resp => {
+            if (resp.status === 202) {
                 resp.json().then(data => console.log(data))
             }
         })
@@ -140,7 +183,7 @@ import { UserContext } from './UserContext';
     }
 
     return (
-        <TeamContext.Provider value={{createTeam, fetchTeams, teams, fav, fetchFavTeams, favTeams, fetchUserTeam, userTeams, deleteTeam, fetchOneTeam, team, fetchEnemyTeam, enemyTeams}}>
+        <TeamContext.Provider value={{createTeam, fetchTeams, teams, fav, fetchFavTeams, favTeams, fetchUserTeam, userTeams, deleteTeam, fetchOneTeam, team, fetchEnemyTeam, enemyTeams, updateTeam}}>
             {children}
         </TeamContext.Provider>
     )
