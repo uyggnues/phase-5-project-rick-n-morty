@@ -26,7 +26,7 @@ const UpdateTeam = () => {
         fetchOneTeam(teamId)
     }, [])
 
-    // console.log(teamMem)
+    // console.log(teamId)
   
     useEffect(() => {
         fetchCharacters()
@@ -36,6 +36,10 @@ const UpdateTeam = () => {
         e.preventDefault()
     }
 
+    ttm.map ( m => blackListedIds.length < ttm.length? setBlackListedIds(current => [...current, m.id.toString()]) : null)
+    useEffect(() => {
+    },[])
+
     const handleDrag = (e, charType) => {
         e.dataTransfer.setData('charType', charType)
     }
@@ -43,7 +47,7 @@ const UpdateTeam = () => {
     const handleDrop = (e) => {
         const charType = e.dataTransfer.getData('charType')
         // console.log(charType, blackListedIds)
-        if (ttm.length < 5 && !blackListedIds.includes(charType) && TM !== null){
+        if (ttm.length < 5 && !blackListedIds.includes(charType)){
             setBlackListedIds(current => [...current, charType])
             // debugger
             fetchOneCharU(parseInt(charType))
@@ -76,12 +80,12 @@ const UpdateTeam = () => {
         const charType = e.dataTransfer.getData('charType')
         if (charType !== null) {
             // debugger
-            // setBlackListedIds(ttm.filter( m => m.id !== parseInt(charType)))
+            setBlackListedIds(current => current.filter( m => m !== charType))
             setTtm(ttm.filter( m => m.id !== parseInt(charType)))
         }
     }
+
     // console.log(ttm)
-    console.log(ttm)
     useEffect(() => {
         if(team.team_members !== undefined) {
             team.team_members.map( m => setTtm(current => [...current, m]))

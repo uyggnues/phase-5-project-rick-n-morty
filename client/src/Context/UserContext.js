@@ -125,8 +125,8 @@ const UserProvider = ({children}) => {
             .then(resp => {
                 if (resp.status === 202) {
                     resp.json().then( data => {
-                        console.log(data)
-                        setUpdateP(data)
+                        // console.log(data)
+                        setUser(data)
                         navigate('/profile')
                     })
                 }
