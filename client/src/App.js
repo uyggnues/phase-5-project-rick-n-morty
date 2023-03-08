@@ -27,6 +27,9 @@ function App() {
     // .then()
   },[])
 
+  // console.log(user)
+
+
   if(!user) return (
     <Routes>
       <Route path='/signup' element={<Signup/>}/>
@@ -34,8 +37,6 @@ function App() {
       <Route path='/' element={<Welcome/>}/>
     </Routes>
   )
-
-
   return (
     <>
     <Navbar />

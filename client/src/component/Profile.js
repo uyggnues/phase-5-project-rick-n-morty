@@ -28,7 +28,7 @@ const Profile = () => {
         fetchFavTeams()
     }, [])
 
-    
+    // console.log(user)
     const mappedKeyWords = user.key ? user.key.map( k => <div className='key' key={k}>{k}</div>) : []
 
     const mappedFTeams = favTeams.map( ft => <FavTeams key={ft.id} ft={ft}/>)

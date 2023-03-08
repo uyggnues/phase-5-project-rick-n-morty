@@ -60,7 +60,7 @@ const UserProvider = ({children}) => {
     }
 
     const Signup = (e, signup, navigate) => {
-        console.log(signup)
+        // console.log(signup)
         e.preventDefault()
         // debugger
         if(signup.password === signup.confirm_password) {
@@ -95,21 +95,31 @@ const UserProvider = ({children}) => {
         .then(resp => {
             if (resp.status === 202) {
                 resp.json().then(data => {
-                    console.log(data)
+                    // console.log(data)
                     setUser(data)
                 })
             }
         })
     }
     // console.log(user)
-    const facebook = (user) => {
-        fetch(`/facebook/${user.id}`, {
+    const oauth = (userObject, navigate) => {
+        // console.log(userObject)
+        fetch('/oauth', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify(userObject)
         })
+        .then(resp => {
+            if (resp.status === 201) {
+                resp.json().then(data => {
+                    setUser(data)
+                    navigate('/')
+                })
+            }
+        }
+        )
     }
 
     const updateUser = (e, updateP, navigate, setUpdateP, user) => {
@@ -149,7 +159,7 @@ const UserProvider = ({children}) => {
     }
 
     return (
-        <UserContext.Provider value={{user, setUser, fetchCurrentUser, Login, logout, Signup, updatePfp, facebook, updateUser, deleteUser}}>
+        <UserContext.Provider value={{user, setUser, fetchCurrentUser, Login, logout, Signup, updatePfp, oauth, updateUser, deleteUser}}>
             {children}
         </UserContext.Provider>
     )

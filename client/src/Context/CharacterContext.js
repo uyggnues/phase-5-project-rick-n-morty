@@ -48,18 +48,18 @@ const CharacterProvider = ({children}) => {
             fetch(`/users/${user.id}/fav_characters/${character.id}`, {
                 method: 'DELETE',
             })
-            .then(resp => {
-                if (resp.status === 204) {
-                    setHeart('🖤')
-                    setFavChars(current => {
-                        const charId = current.findIndex(ele => ele.id === character.id)
-                        return [...current.slice(0, charId), ...current.slice(charId + 1)]
-                    })
-                }
-            })
+            setFavChars(current => current.filter( t => t.character.id !== character.id)
+            )
+            setHeart('🖤')
         }
     }
-
+    
+    // current.filter( c => c.id !== character.id)
+    // {
+    //     const teamId = current.findIndex(ele => ele.team.id === t.id)
+    //     return [...current.slice(0, teamId), ...current.slice(teamId + 1)]
+    // }
+    // console.log(favChars)
     const fetchOneChar = (chars) => {
         // console.log(chars)
         fetch(`https://rickandmortyapi.com/api/character/${chars}`)

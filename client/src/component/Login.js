@@ -17,6 +17,7 @@ const Login = () => {
     }
 
 
+
     return (
         <div className='form'>
             <form className='login' onSubmit={(e) => Login(e, login, navigate)}>
@@ -31,7 +32,7 @@ const Login = () => {
                     Don't have an account? Signup <Link to={'/signup'}>Here</Link>
                 </div>
             </form>
-            {/* <OauthLogin /> */}
+            <OauthLogin />
         </div>
     );
 }

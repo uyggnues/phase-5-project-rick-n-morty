@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :find_user, only: %i[ destroy ] 
-    skip_before_action :authorized_user, only: [:signup, :facebook]
+    skip_before_action :authorized_user, only: [:signup, :oauth]
 
     def show
         render json: @user, status: :ok
@@ -27,13 +27,19 @@ class UsersController < ApplicationController
       render json: get_user, status: :accepted
     end
 
-    def facebook
+    def oauth
       # debugger
-      facebook_user = User.find_or_create_by(email: params[:email]) do |u|
+      user = User.find_or_create_by(email: params[:email]) do |u|
         u.name = params[:name] 
         u.email = params[:email] 
         u.password = SecureRandom.hex(16)
-        u.provider_id = params[:id]
+        # u.provider_id = params[:id]
+      end
+      if user.id
+        session[:user_id] = user.id
+        render json: user, status: :created
+      else
+        render json: {message: user.errors.full_messages}, status: :unprocessable_entity
       end
     end
 

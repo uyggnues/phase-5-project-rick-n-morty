@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   
   post '/login', to:'sessions#login'
   post '/signup', to: 'users#signup'
-  post '/facebook/:id', to: 'users#facebook'
+  post '/oauth', to: 'users#oauth'
 
   patch '/users_pfp/:id', to: 'users#update_pfp'
   

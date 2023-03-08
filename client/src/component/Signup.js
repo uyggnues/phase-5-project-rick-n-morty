@@ -9,7 +9,8 @@ const Signup = () => {
         name: '',
         email: '',
         password: '',
-        confirm_password: ''
+        confirm_password: '',
+        key_words: 'new'
     })
 
     const handleChange = (e) => {
