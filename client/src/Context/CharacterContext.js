@@ -62,7 +62,7 @@ const CharacterProvider = ({children}) => {
     // console.log(favChars)
     const fetchOneChar = (chars) => {
         // console.log(chars)
-        fetch(`https://rickandmortyapi.com/api/character/${chars}`)
+        fetch(`/characters/${parseInt(chars)}`)
         .then(resp => resp.json())
         .then( data => {
             setTeamMem(current => [...current, data])

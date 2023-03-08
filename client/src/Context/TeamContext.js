@@ -63,10 +63,11 @@ import { UserContext } from './UserContext';
         })
     }
 
-    const updateTeam = (e, updatingTeam, teamId, ttm) => {
+    const updateTeam = (e, updatingTeam, teamId, ttm, navigate) => {
         e.preventDefault()
-        // console.log(ttm)
         // debugger
+        // const mttm = ttm.map (mttm => mttm)
+        // console.log(mttm)
         fetch(`/updateTeam/${teamId}`, {
             method: 'PATCH',
             headers: {
@@ -79,7 +80,7 @@ import { UserContext } from './UserContext';
                 resp.json().then(data => 
                     // {debugger}
                     setTeams(current => {
-                    data.team_members.map( m => ttm.map( mttm => updateTeamMember(e, m, data, mttm)))
+                    data.team_members.map( m => updateTeamMember(e, m, data, ttm, navigate))
                     return [...current, data]
                 })
                 )
@@ -87,8 +88,8 @@ import { UserContext } from './UserContext';
         })
     }
 
-    const updateTeamMember = (e, m, data, mttm) => {
-        e.preventDefault()
+    const updateTeamMember = (e, m, data, mttm, navigate) => {
+        e.preventDefault.team_members()
         const member = {
             team_id: data.id,
             character_id: mttm.id,
@@ -106,9 +107,10 @@ import { UserContext } from './UserContext';
         })
         .then(resp => {
             if (resp.status === 202) {
-                resp.json().then(data => console.log(data))
+                resp.json().then(data =>data)
             }
         })
+        navigate('/my_teams')
     }
 
     const fav = (heart, setHeart, favorite, t) => {

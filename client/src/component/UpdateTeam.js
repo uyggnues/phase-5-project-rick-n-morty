@@ -4,7 +4,7 @@ import { TeamContext } from '../Context/TeamContext';
 import { UserContext } from '../Context/UserContext';
 import TeamCharacter from './TeamCharacter';
 import TeamMembers from './TeamMembers';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate} from 'react-router-dom';
 
 
 const UpdateTeam = () => {
@@ -17,6 +17,7 @@ const UpdateTeam = () => {
     const params = useParams()
     const teamId = parseInt(params.team_id)
     const [ttm, setTtm] = useState([])
+    const navigate = useNavigate()
     const [updatingTeam, setUpdatingTeam] = useState({
         id: teamId,
         name: team.name,
@@ -94,8 +95,8 @@ const UpdateTeam = () => {
 
     return (
         <div className='team-page'>
-            <form onSubmit={(e) => updateTeam(e, updatingTeam, teamId, ttm)} className='teamForm'>
-                <input id='team_name' type='text' placeholder='your team name here' name='name' value={updatingTeam?.name || team.name} onChange={handleChange}/>
+            <form onSubmit={(e) => updateTeam(e, updatingTeam, teamId, ttm, navigate)} className='teamForm'>
+                <input id='team_name' type='text' placeholder={team.name} name='name' value={updatingTeam?.name} onChange={handleChange}/>
                 <div className='canvas' onDrop={handleDrop} onDragOver={handleDragOver}>
                     <TeamMembers cha={ttm !== undefined ? ttm : null} handleDrag={handleDrag}/>
                 </div>

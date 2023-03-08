@@ -41,7 +41,7 @@ const MakeTeams = () => {
 
         }
     }
-    // console.log(chars)
+    // console.log(teamMem)
     const filteredCharacters = characters.filter(char => char.name.toLowerCase().includes(searchInput.toLowerCase()))
 
     const mappedCharacters = filteredCharacters.map( c => <TeamCharacter key={c.id} c={c} handleDrag={handleDrag}/>)
