@@ -72,7 +72,7 @@ const CharacterProvider = ({children}) => {
 
     const fetchOneCharU = (chars) => {
         // console.log(chars)
-        fetch(`https://rickandmortyapi.com/api/character/${chars}`)
+        fetch(`/characters/${chars}`)
         .then(resp => resp.json())
         .then( data => {
             setTM(data)

@@ -97,7 +97,7 @@ import { UserContext } from './UserContext';
             character_id: ttm.map( mttm => mttm.id),
             search_id: m.id,
         }
-        debugger
+        // debugger
 
         // debugger
         fetch(`/update_team_members/${data.id}`, {
