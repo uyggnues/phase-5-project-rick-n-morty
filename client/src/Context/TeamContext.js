@@ -88,14 +88,16 @@ import { UserContext } from './UserContext';
         })
     }
 
-    const updateTeamMember = (e, m, data, mttm, navigate) => {
-        e.preventDefault.team_members()
+    const updateTeamMember = (e, m, data, ttm, navigate) => {
+        e.preventDefault()
+        // let tmmt = {}
+        // ttm.map( mttm => mttm = tmmt)
         const member = {
             team_id: data.id,
-            character_id: mttm.id,
+            character_id: ttm.map( mttm => mttm.id),
             search_id: m.id,
         }
-        // debugger
+        debugger
 
         // debugger
         fetch(`/update_team_members/${data.id}`, {

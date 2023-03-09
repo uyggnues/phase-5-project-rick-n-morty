@@ -13,7 +13,7 @@ class TeamMembersController < ApplicationController
     end
 
     def update_team_members
-        # debugger
+        debugger
         team_member = TeamMember.find_by(character_id: params[:search_id])
         team_member.update!(team_member_params)
         render json: team_member, status: :accepted

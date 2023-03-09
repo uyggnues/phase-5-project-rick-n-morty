@@ -10,10 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_22_200208) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_22_174412) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "character_episodes", force: :cascade do |t|
-    t.integer "character_id", null: false
-    t.integer "episode_id", null: false
+    t.bigint "character_id", null: false
+    t.bigint "episode_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["character_id"], name: "index_character_episodes_on_character_id"
@@ -40,8 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_200208) do
   end
 
   create_table "fav_characters", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "character_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "character_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["character_id"], name: "index_fav_characters_on_character_id"
@@ -49,8 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_200208) do
   end
 
   create_table "fav_teams", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "team_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_fav_teams_on_team_id"
@@ -58,8 +61,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_200208) do
   end
 
   create_table "team_members", force: :cascade do |t|
-    t.integer "team_id", null: false
-    t.integer "character_id", null: false
+    t.bigint "team_id", null: false
+    t.bigint "character_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["character_id"], name: "index_team_members_on_character_id"
@@ -68,7 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_200208) do
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_teams_on_user_id"
