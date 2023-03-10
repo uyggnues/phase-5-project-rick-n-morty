@@ -28,7 +28,7 @@ const UpdateTeam = () => {
     })
 
     useEffect(() => {
-        fetchOneTeam(teamId)
+            fetchOneTeam(teamId)
     }, [])
 
     // console.log(team.id)
@@ -44,14 +44,14 @@ const UpdateTeam = () => {
     ttm.slice(0,5).map ( m => blackListedIds.length < ttm.length? setBlackListedIds(current => [...current, m.id.toString()]) : null)
     // useEffect(() => {
     // },[])
-    console.log(ttm)
+    // console.log(ttm)
     const handleDrag = (e, charType) => {
         e.dataTransfer.setData('charType', charType)
     }
     // console.log(blackListedIds)
     const handleDrop = (e) => {
-        const charType = e.dataTransfer.getData('charType')
         // console.log(charType, blackListedIds)
+        const charType = e.dataTransfer.getData('charType')
         if (ttm.length < 5 && !blackListedIds.includes(charType)){
             setBlackListedIds(current => [...current, charType])
             // debugger
@@ -60,7 +60,7 @@ const UpdateTeam = () => {
     }
     // console.log(TM)
     useEffect(() => {
-            if (TM !== null) {
+            if (TM !== null && ttm.length < 5) {
                 setTtm(current => [...current, TM])
             }
         },[TM])
@@ -87,7 +87,7 @@ const UpdateTeam = () => {
         }
     }
 
-    console.log(team)
+    // console.log(team)
     useEffect(() => {
         if(team.team_members !== undefined && ttm.length < 5) {
             // debugger

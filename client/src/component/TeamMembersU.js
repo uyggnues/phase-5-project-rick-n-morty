@@ -7,7 +7,7 @@ const TeamMembersU = ({cha, handleDrag}) => {
     // console.log(cha)
 
 
-    const mappedTeamMembers = cha && cha.map( m => <TeamMemberU key={m.id} m={m} handleDrag={handleDrag}/>)
+    const mappedTeamMembers = cha && cha.slice(0,5).map( m => <TeamMemberU key={m.id} m={m} handleDrag={handleDrag}/>)
 
     return (
         <div className='team_making_field'>
