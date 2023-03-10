@@ -992,6 +992,8 @@ h2:hover{
 
 .battle_btn_2{
   margin-top: 5rem;
+  /* width: 18rem;
+  height: 8rem; */
 }
 
 .battleground{
@@ -1106,9 +1108,9 @@ h2:hover{
 }
 
 .next_battle{
-  font-size: 5rem;
+  font-size: 4rem;
   padding: 1rem;
-  width: 18rem;
+  width: 15rem;
   border-radius: 5rem;
   color: white;
   border: 1px solid white;

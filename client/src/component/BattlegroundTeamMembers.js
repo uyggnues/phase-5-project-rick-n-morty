@@ -11,6 +11,7 @@ const BattlegroundTeamMembers = ({user, t}) => {
     const [battle, setBattle] = useState(false)
     const [results, setResults] = useState([])
     const [re, setRe] = useState(0)
+    // const [run, setRun] = useState(false)
 
     useEffect(() => {
         fetchEnemyTeam(user)
@@ -81,34 +82,37 @@ const BattlegroundTeamMembers = ({user, t}) => {
     const winner = (BI) => {
         // debugger
         // setResults([])
-        if ( BP[BI] > EBP[BI] && setResults([])) {
+        if ( BP[BI] > EBP[BI]) {
             if(results < 5) {
                 setResults(current => [...current, 'won'])
+                // setCount(count + 1)
             }
             return <p className='won'>WON</p> 
         } else {
             if(results < 5) {
                 setResults(current => [...current, 'lost'])
+                // setCount(count + 1)
             }
             return <p className='lost'>LOST</p>
         }
     }
+    const totalWinner = re > 2 && battle ? <p className='final_won'>WON</p> : <p className='final_lost'>LOST</p>
+    
     useEffect(() => {
-        setRe(results.filter(result => result === 'won').length)
-        
-    },[results])
+        if (results.length === 5) {
+            // console.log(count)
+            setRe(results.filter(result => result === 'won').length)
+            setResults([])
+        }
+    },[totalWinner])
+        // setCount(count + 1)
     // const lost = results.filter(result => result === 'lost').length
     // console.log(EBP)
     // console.log(BP)
-    console.log(results, re)
+    // console.log(results, re)
 
-    const totalWinner = () => {
-        if(re > 2) {
-            return <p className='final_won'>WON</p> 
-        } else {
-            return <p className='final_lost'>LOST</p>
-        }
-    }
+        
+    
     return (
         <div className='BG'>
             <div className='battle_teams_display'>
@@ -137,7 +141,7 @@ const BattlegroundTeamMembers = ({user, t}) => {
                     <div className='winners'>round 3: {winner(2)}</div>
                     <div className='winners'>round 4: {winner(3)}</div>
                     <div className='winners'>round 5: {winner(4)}</div>
-                    <div className='final_winners'>results: {totalWinner()}</div>
+                    <div className='final_winners'>results: {totalWinner}</div>
                     <button className='next_battle' onClick={() => setBattle(current => !current)}>next</button>
                 </div>
                 }
