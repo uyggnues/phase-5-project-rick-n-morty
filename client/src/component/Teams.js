@@ -14,7 +14,11 @@ const Teams = () => {
 
     return (
         <div>
-            {mappedTeams}
+            { teams.length > 0 ?
+            mappedTeams
+            :
+            <p className='non_liked'>there is created teams</p>
+            }
         </div>
     );
 }

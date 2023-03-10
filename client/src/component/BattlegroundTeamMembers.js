@@ -10,6 +10,7 @@ const BattlegroundTeamMembers = ({user, t}) => {
     const [i, setI] = useState(0)
     const [battle, setBattle] = useState(false)
     const [results, setResults] = useState([])
+    const [re, setRe] = useState(0)
 
     useEffect(() => {
         fetchEnemyTeam(user)
@@ -48,15 +49,17 @@ const BattlegroundTeamMembers = ({user, t}) => {
             EBP.length < 5 ? setEBP(current => [...current, etm.name.length * etm.origin.length]) : null
             )}
     },[ct])
-    console.log(EBP)
+    
 
     // EBP.length < 5 ? setEBP(current => [...current, t.name.length * t.origin.length]) : null
     const next = () => {
         setEBP([])
         if (i >= enemyTeams.length - 1) {
             setI(0)
+            winner()
         } else {
             setI(current => current + 1)
+            winner()
         }
     }
 
@@ -64,15 +67,21 @@ const BattlegroundTeamMembers = ({user, t}) => {
         setEBP([])
         if (i <= 0) {
             setI(enemyTeams.length - 1)
+            // setResults([])
+            winner()
         } else {
             setI(current => current - 1)
+            // setResults([])
+            winner()
         }
     }
 
     const sum = BP.length > 1 ? BP.reduce((a, b) => {return (a + b)}) : null
 
     const winner = (BI) => {
-        if ( BP[BI] > EBP[BI]) {
+        // debugger
+        // setResults([])
+        if ( BP[BI] > EBP[BI] && setResults([])) {
             if(results < 5) {
                 setResults(current => [...current, 'won'])
             }
@@ -84,13 +93,17 @@ const BattlegroundTeamMembers = ({user, t}) => {
             return <p className='lost'>LOST</p>
         }
     }
-    const won = results.filter(result => result === 'won').length
-    const lost = results.filter(result => result === 'lost').length
-
-    // console.log(results, won, lost)
+    useEffect(() => {
+        setRe(results.filter(result => result === 'won').length)
+        
+    },[results])
+    // const lost = results.filter(result => result === 'lost').length
+    // console.log(EBP)
+    // console.log(BP)
+    console.log(results, re)
 
     const totalWinner = () => {
-        if(won > lost) {
+        if(re > 2) {
             return <p className='final_won'>WON</p> 
         } else {
             return <p className='final_lost'>LOST</p>
@@ -98,6 +111,7 @@ const BattlegroundTeamMembers = ({user, t}) => {
     }
     return (
         <div className='BG'>
+            <div className='battle_teams_display'>
             <div className='teamM_display'>
                 {mappedBattleTeamM}
             </div>
@@ -106,6 +120,7 @@ const BattlegroundTeamMembers = ({user, t}) => {
                 <button className='battle_previous_btn' onClick={() => previous()}><RiArrowDropLeftFill/></button>
                 {mappedEnemyTeams[i]}
                 <button className='battle_next_btn' onClick={() => next()}><RiArrowDropRightFill/></button>
+            </div>
             </div>
             <div className='battle_info'>
                 {!battle ?

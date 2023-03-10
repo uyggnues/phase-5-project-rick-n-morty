@@ -1,9 +1,11 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {useNavigate, Link} from 'react-router-dom'
 import { UserContext } from '../Context/UserContext';
+import { ErrorContext } from '../Context/ErrorContext';
 
 const UpdateProfile = () => {
     const navigate = useNavigate()
+    const { errors, mappedErrors } = useContext(ErrorContext)
     const {user, updateUser} = useContext(UserContext)
     const [updateP, setUpdateP] = useState({
         name: user.name,
@@ -16,6 +18,8 @@ const UpdateProfile = () => {
     }
 
     return (
+        <>
+        {errors ? mappedErrors : null}
         <div className='form'>
             <form className='login' onSubmit={(e) => updateUser(e, updateP, navigate, setUpdateP, user)}>
                 <h1 className='LOGIN'>update profile</h1>
@@ -29,6 +33,7 @@ const UpdateProfile = () => {
                 <br/>
             </form>
         </div>
+        </>
     );
 }
 

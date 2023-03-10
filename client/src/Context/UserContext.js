@@ -144,10 +144,13 @@ const UserProvider = ({children}) => {
                         setUser(data)
                         navigate('/profile')
                     })
+                } else {
+                    resp.json().then(data => 
+                        // {debugger}
+                        setErrors(Object.entries(data.errors).map( e=> `${e[0]} ${e[1]}`))
+                    )
                 }
             })
-        } else {
-            console.log('key word cannot reach beyond 40 characters')
         }
     }
 

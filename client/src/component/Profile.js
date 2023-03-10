@@ -28,14 +28,14 @@ const Profile = () => {
         fetchFavTeams()
     }, [])
 
-    // console.log(user)
     const mappedKeyWords = user.key ? user.key.map( k => <div className='key' key={k}>{k}</div>) : []
-
+    
     const mappedFTeams = favTeams.map( ft => <FavTeams key={ft.id} ft={ft}/>)
-
+    
     const mappedFavChars = favChars.map( c => <FavCharacters key={c.id} char={c}/>)
-
+    
     const mappedChars = characters.map(character => <Pfp key={character.id} character={character} />)
+    // console.log(favChars)
 
 
     return (
@@ -90,9 +90,21 @@ const Profile = () => {
                 <h2 onClick={() => setShowFav('')}>Liked Teams</h2>
                 <div className='favChar'>
                     {showFav === 'char' ?
-                    <div className='fav_char'>{mappedFavChars}</div>
+                    <div className='fav_char'>
+                        {favChars.length > 0 ? 
+                            mappedFavChars 
+                            : 
+                            <p className='non_liked'>no liked characters</p>
+                        }
+                    </div>
                     :
-                    <div className='fav_teams'>{mappedFTeams}</div>
+                    <div className='fav_teams'>
+                        { favTeams.length > 0 ?
+                        mappedFTeams
+                        :
+                        <p className='non_liked'>no liked teams</p>
+                        }
+                    </div>
                     }
                 </div>
             </div>

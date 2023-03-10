@@ -19,7 +19,11 @@ const MyTeams = () => {
 
     return (
         <div>
-            {mappedUserTeams}
+            { userTeams.length > 0 ?
+            mappedUserTeams
+            :
+            <p className='non_liked'>no created teams</p>
+            }
         </div>
 
     );

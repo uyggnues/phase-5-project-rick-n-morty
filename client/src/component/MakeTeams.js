@@ -4,6 +4,7 @@ import { TeamContext } from '../Context/TeamContext';
 import { UserContext } from '../Context/UserContext';
 import TeamCharacter from './TeamCharacter';
 import TeamMembers from './TeamMembers';
+import { ErrorContext } from '../Context/ErrorContext';
 import { render, queryByAttribute } from '@testing-library/react';
 
 
@@ -11,6 +12,7 @@ const MakeTeams = () => {
     const {characters, setCharacters, fetchCharacters, fetchOneChar, teamMem, setTeamMem} = useContext(CharacterContext)
     const {createTeam} = useContext(TeamContext)
     const {user} = useContext(UserContext)
+    const { errors, mappedErrors } = useContext(ErrorContext)
     const [chars, setChars] = useState(null)
     const [searchInput, setSearchInput] = useState('')
     const [blackListedIds, setBlackListedIds] = useState([])
@@ -47,7 +49,7 @@ const MakeTeams = () => {
     const mappedCharacters = filteredCharacters.map( c => <TeamCharacter key={c.id} c={c} handleDrag={handleDrag}/>)
 
     
-    // console.log(parseInt(chars))
+    // console.log(characters)
     // teamMem.map( m => parseInt(chars) === m.id)
     useEffect(() => {
         if (chars !== null) {
@@ -61,6 +63,8 @@ const MakeTeams = () => {
 
 
     return (
+        <>
+        {errors ? mappedErrors : null}
         <div className='team-page'>
             <form onSubmit={(e) => createTeam(e, team, teamMem, setTeam, setTeamMem, setBlackListedIds)} className='teamForm'>
                 <input id='team_name' type='text' placeholder='your team name here' name='name' value={team.name} onChange={handleChange}/>
@@ -73,9 +77,14 @@ const MakeTeams = () => {
                 <input className='search_bar' type='text' value={searchInput} onChange={(e) => setSearchInput(e.target.value)} placeholder='search for...'/>
             </div>
             <div className='char-in-team' >
-                {mappedCharacters}
+                { filteredCharacters.length > 0 ?
+                mappedCharacters
+                :
+                <p className='non_liked'>no characters that includes "{searchInput}"</p>
+                }
             </div>
         </div>
+        </>
     );
 }
 

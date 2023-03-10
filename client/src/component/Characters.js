@@ -38,7 +38,11 @@ const Characters = () => {
                 <input className='search_bar' type='text' value={searchInput} onChange={(e) => setSearchInput(e.target.value)} placeholder='search for...'/>
             </div>
             <div className='chars'>
-                {mappedCharacters}
+                { filteredCharacters.length > 0 ?
+                mappedCharacters
+                :
+                <p className='non_liked'>no characters that includes "{searchInput}"</p>
+                }
             </div>
             {
             showToTop ?

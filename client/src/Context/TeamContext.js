@@ -1,8 +1,10 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { UserContext } from './UserContext';
+import { ErrorContext } from "./ErrorContext";
     const TeamContext = createContext()
 
     const TeamProvider = ({children}) => {
+        const { errors, setErrors } = useContext(ErrorContext);
         const {user} = useContext(UserContext)
         const [teams, setTeams] = useState([])
         const [favTeams, setFavTeams] = useState([])
@@ -31,6 +33,11 @@ import { UserContext } from './UserContext';
                     teamMem.map(m => createTeamMember(m, data))
                     return [...current, data]
                 }))
+            } else {
+                resp.json().then(data => 
+                    // {debugger}
+                    setErrors(Object.entries(data.errors).map( e=> `${e[0]} ${e[1]}`))
+                )
             }
         })
         setTeam({
@@ -84,6 +91,11 @@ import { UserContext } from './UserContext';
                      updateTeamMember(e, data, navigate, x)
                     return [...current, data]
                 })
+                )
+            } else {
+                resp.json().then(data => 
+                    {debugger}
+                    // setErrors(Object.entries(data.errors).map( e=> `${e[0]} ${e[1]}`))
                 )
             }
         })
