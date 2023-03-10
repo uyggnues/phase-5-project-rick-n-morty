@@ -7,22 +7,25 @@ import { UserProvider } from './Context/UserContext'
 import { CharacterProvider } from './Context/CharacterContext';
 import { TeamProvider } from './Context/TeamContext';
 import { EpisodeProvider } from './Context/EpisodeContext';
+import { ErrorProvider } from './Context/ErrorContext';
 import {BrowserRouter as Router} from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-  <UserProvider>
-    <CharacterProvider>
-      <TeamProvider>
-        <EpisodeProvider>
-          <Router>
-            <App />
-          </Router>
-        </EpisodeProvider>
-      </TeamProvider>
-    </CharacterProvider>
-  </UserProvider>
+  <ErrorProvider>
+    <UserProvider>
+      <CharacterProvider>
+        <TeamProvider>
+          <EpisodeProvider>
+            <Router>
+              <App />
+            </Router>
+          </EpisodeProvider>
+        </TeamProvider>
+      </CharacterProvider>
+    </UserProvider>
+  </ErrorProvider>
   // </React.StrictMode>
 );
 

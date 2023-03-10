@@ -22,10 +22,10 @@ end
 
 
 # puts characters
-User.delete_all
-Character.delete_all
-Team.delete_all
-TeamMember.delete_all
+# User.delete_all
+# Character.delete_all
+# Team.delete_all
+# TeamMember.delete_all
 
 puts 'seeding User'
 

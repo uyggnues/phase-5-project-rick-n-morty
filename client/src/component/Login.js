@@ -2,10 +2,12 @@ import React, {useState, useEffect, useContext} from 'react';
 import { UserContext } from '../Context/UserContext';
 import { useNavigate, Link } from 'react-router-dom';
 import OauthLogin from './Oauth_login';
+import { ErrorContext } from '../Context/ErrorContext';
 
 
 const Login = () => {
     const navigate = useNavigate()
+    const {errors, mappedErrors} = useContext(ErrorContext)
     const {Login} = useContext(UserContext)
     const [login, setLogin] = useState({
         email: '',
@@ -16,9 +18,12 @@ const Login = () => {
         setLogin({...login, [e.target.name]:e.target.value})
     }
 
+    
 
-
+    console.log(errors)
     return (
+        <>
+            {errors ? mappedErrors : null}
         <div className='form'>
             <form className='login' onSubmit={(e) => Login(e, login, navigate)}>
                 <h1 className='LOGIN'>LOGIN</h1>
@@ -34,6 +39,7 @@ const Login = () => {
             </form>
             <OauthLogin />
         </div>
+        </>
     );
 }
 

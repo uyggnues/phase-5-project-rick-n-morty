@@ -1,8 +1,10 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+import { ErrorContext } from "./ErrorContext";
 
 const UserContext = createContext()
 
 const UserProvider = ({children}) => {
+    const { errors, setErrors } = useContext(ErrorContext)
     const [user, setUser] = useState(null);
 
     const fetchCurrentUser = () => {
@@ -37,8 +39,8 @@ const UserProvider = ({children}) => {
             })
             } else {
                 resp.json().then(data => {
-                    console.log(data)
-                    // setErrors(data.error)
+                    // {debugger}
+                    setErrors(Object.entries(data).map(e=> `${e[0]} ${e[1]}`))
                 })
             }
         })
@@ -78,7 +80,10 @@ const UserProvider = ({children}) => {
                     navigate('/')
                 })
             } else {
-                resp.json().then(data => console.log(data))
+                resp.json().then(data => 
+                    // {debugger}
+                    setErrors(Object.entries(data.message).map( e=> `${e[0]} ${e[1]}`))
+                )
             }
         })
     }

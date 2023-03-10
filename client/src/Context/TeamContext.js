@@ -68,6 +68,7 @@ import { UserContext } from './UserContext';
         // debugger
         // const mttm = ttm.map (mttm => mttm)
         // console.log(mttm)
+        let x = ttm.map( mttm => mttm.id)
         fetch(`/updateTeam/${teamId}`, {
             method: 'PATCH',
             headers: {
@@ -80,7 +81,7 @@ import { UserContext } from './UserContext';
                 resp.json().then(data => 
                     // {debugger}
                     setTeams(current => {
-                    data.team_members.map( m => updateTeamMember(e, m, data, ttm, navigate))
+                     updateTeamMember(e, data, navigate, x)
                     return [...current, data]
                 })
                 )
@@ -88,14 +89,13 @@ import { UserContext } from './UserContext';
         })
     }
 
-    const updateTeamMember = (e, m, data, ttm, navigate) => {
+    const updateTeamMember = (e, data, navigate, x) => {
         e.preventDefault()
-        // let tmmt = {}
-        // ttm.map( mttm => mttm = tmmt)
+        
         const member = {
             team_id: data.id,
-            character_id: ttm.map( mttm => mttm.id),
-            search_id: m.id,
+            character_id: x,
+            search_id: data.team_members.id,
         }
         // debugger
 
@@ -109,7 +109,7 @@ import { UserContext } from './UserContext';
         })
         .then(resp => {
             if (resp.status === 202) {
-                resp.json().then(data =>data)
+                resp.json().then(data => data)
             }
         })
         navigate('/my_teams')

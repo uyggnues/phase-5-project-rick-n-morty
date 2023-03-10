@@ -1,8 +1,10 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {useNavigate, Link} from 'react-router-dom'
 import { UserContext } from '../Context/UserContext';
+import { ErrorContext } from '../Context/ErrorContext';
 
 const Signup = () => {
+    const { errors, mappedErrors } = useContext(ErrorContext);
     const navigate = useNavigate()
     const {Signup} = useContext(UserContext)
     const [signup, setSignup] = useState({
@@ -18,6 +20,8 @@ const Signup = () => {
     }
 
     return (
+        <>
+            {errors ? mappedErrors : null}
         <div className="form">
         <form className='signup' onSubmit={(e) => Signup(e, signup, navigate)}>
             <h1 className='LOGIN'>SIGNuP</h1>
@@ -38,6 +42,7 @@ const Signup = () => {
             </div>
         </form>
         </div>
+        </>
     );
 }
 
