@@ -83,13 +83,13 @@ const BattlegroundTeamMembers = ({user, t}) => {
         // debugger
         // setResults([])
         if ( BP[BI] > EBP[BI]) {
-            if(results < 5) {
+            if(results.length < 5) {
                 setResults(current => [...current, 'won'])
                 // setCount(count + 1)
             }
             return <p className='won'>WON</p> 
         } else {
-            if(results < 5) {
+            if(results.length < 5) {
                 setResults(current => [...current, 'lost'])
                 // setCount(count + 1)
             }
@@ -109,7 +109,7 @@ const BattlegroundTeamMembers = ({user, t}) => {
     // const lost = results.filter(result => result === 'lost').length
     // console.log(EBP)
     // console.log(BP)
-    // console.log(results, re)
+    console.log(results, re)
 
         
     

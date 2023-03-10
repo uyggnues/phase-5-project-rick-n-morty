@@ -11,6 +11,7 @@ import { ErrorContext } from "./ErrorContext";
         const [userTeams, setUserTeams] = useState([])
         const [team, setTeam] = useState({})
         const [enemyTeams, setEnemyTeams] = useState([])
+// console.log(userTeams)
 
     const fetchTeams = () => {
         fetch('/teams')
@@ -70,12 +71,13 @@ import { ErrorContext } from "./ErrorContext";
         })
     }
 
-    const updateTeam = (e, updatingTeam, teamId, ttm, navigate) => {
+    const updateTeam = (e, updatingTeam, teamId, ttm, navigate, setTtm) => {
         e.preventDefault()
         // debugger
         // const mttm = ttm.map (mttm => mttm)
         // console.log(mttm)
         let x = ttm.map( mttm => mttm.id)
+        // setTtm([])
         fetch(`/updateTeam/${teamId}`, {
             method: 'PATCH',
             headers: {
@@ -88,7 +90,7 @@ import { ErrorContext } from "./ErrorContext";
                 resp.json().then(data => 
                     // {debugger}
                     setTeams(current => {
-                     updateTeamMember(e, data, navigate, x)
+                    updateTeamMember(e, data, navigate, x, setTtm)
                     return [...current, data]
                 })
                 )
@@ -101,7 +103,7 @@ import { ErrorContext } from "./ErrorContext";
         })
     }
 
-    const updateTeamMember = (e, data, navigate, x) => {
+    const updateTeamMember = (e, data, navigate, x, setTtm) => {
         e.preventDefault()
         
         const member = {
@@ -121,10 +123,16 @@ import { ErrorContext } from "./ErrorContext";
         })
         .then(resp => {
             if (resp.status === 202) {
-                resp.json().then(data => data)
+                resp.json().then(d => {
+                    setTeam(d)
+                    setUserTeams(current => [d, ...current.filter( c => c.id !== d.id)])
+                    
+                    // setTtm({})
+                }
+                )
             }
         })
-        navigate('/my_teams')
+        .then(() => navigate('/my_teams'))
     }
 
     const fav = (heart, setHeart, favorite, t) => {

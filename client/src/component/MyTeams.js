@@ -10,10 +10,11 @@ const MyTeams = () => {
     useEffect(() => {
         fetchUserTeam(user)
     }, [])
-    // console.log(userTeams)
+    console.log(userTeams)
     // debugger
 
     const mappedUserTeams = userTeams ? userTeams.map( ut => 
+        // console.log(ut)
         <MyTeam key={ut.id} ut={ut}/>
         ) : null
 

@@ -4,7 +4,7 @@ import { TeamContext } from '../Context/TeamContext';
 import { UserContext } from '../Context/UserContext';
 import TeamCharacter from './TeamCharacter';
 import TeamMembers from './TeamMembers';
-import { useParams, useNavigate} from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
 
 const UpdateTeam = () => {
@@ -15,6 +15,9 @@ const UpdateTeam = () => {
     const [searchInput, setSearchInput] = useState('')
     const [blackListedIds, setBlackListedIds] = useState([])
     const params = useParams()
+    // const location = useLocation()
+    // const setTm = location.state.setTm
+    // console.log(location)
     const teamId = parseInt(params.team_id)
     const [ttm, setTtm] = useState([])
     const navigate = useNavigate()
@@ -55,7 +58,7 @@ const UpdateTeam = () => {
             fetchOneCharU(parseInt(charType))
         }
     }
-    // console.log(ttm)
+    // console.log(TM)
     useEffect(() => {
             if (TM !== null) {
                 setTtm(current => [...current, TM])
@@ -87,6 +90,7 @@ const UpdateTeam = () => {
     // console.log(ttm)
     useEffect(() => {
         if(team.team_members !== undefined) {
+            // debugger
             team.team_members.map( m => setTtm(current => [...current, m]))
         }
     },[team.team_members])
@@ -95,8 +99,8 @@ const UpdateTeam = () => {
 
     return (
         <div className='team-page'>
-            <form onSubmit={(e) => updateTeam(e, updatingTeam, teamId, ttm, navigate)} className='teamForm'>
-                <input id='team_name' type='text' placeholder={team.name} name='name' value={updatingTeam?.name} onChange={handleChange}/>
+            <form onSubmit={(e) => updateTeam(e, updatingTeam, teamId, ttm, navigate, setTtm)} className='teamForm'>
+                <input id='team_name' type='text' placeholder='team name here' name='name' value={updatingTeam?.name || team.name || ''} onChange={handleChange}/>
                 <div className='canvas' onDrop={handleDrop} onDragOver={handleDragOver}>
                     <TeamMembers cha={ttm !== undefined ? ttm : null} handleDrag={handleDrag}/>
                 </div>

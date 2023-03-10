@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../Context/UserContext';
 
 const MyTeam = ({ut}) => {
+  console.log(ut)
     const navigate = useNavigate()
     const [tm, setTm] = useState(ut.team_members)
     const { deleteTeam } = useContext(TeamContext)
@@ -12,7 +13,7 @@ const MyTeam = ({ut}) => {
     
     const mappedUt = tm !== [] ? tm.map( utm => <MyTeamMembers key={utm.id} utm={utm}/>) : null
 
-    // console.log(ut)
+    console.log(tm)
   
     return (
         <div className='team_outline'>
