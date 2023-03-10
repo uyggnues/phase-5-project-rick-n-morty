@@ -2,18 +2,18 @@ import React, { useContext, useEffect, useState } from 'react';
 import { TeamContext } from '../Context/TeamContext';
 import MyTeamMembers from './MyTeamMembers';
 import { useNavigate } from 'react-router-dom'
-import { UserContext } from '../Context/UserContext';
+// import { UserContext } from '../Context/UserContext';
 
 const MyTeam = ({ut}) => {
-  console.log(ut)
+  // console.log(ut)
     const navigate = useNavigate()
     const [tm, setTm] = useState(ut.team_members)
     const { deleteTeam } = useContext(TeamContext)
-    const { user } = useContext(UserContext)
+    // const { user } = useContext(UserContext)
     
-    const mappedUt = tm !== [] ? tm.map( utm => <MyTeamMembers key={utm.id} utm={utm}/>) : null
+    const mappedUt = tm.slice(0,5).length === 5 ? tm.slice(0,5).map( utm => <MyTeamMembers key={utm.id} utm={utm}/>) : null
 
-    console.log(tm)
+    // console.log(tm)
   
     return (
         <div className='team_outline'>

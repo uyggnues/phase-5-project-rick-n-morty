@@ -125,7 +125,7 @@ import { ErrorContext } from "./ErrorContext";
             if (resp.status === 202) {
                 resp.json().then(d => {
                     setTeam(d)
-                    setUserTeams(current => [d, ...current.filter( c => c.id !== d.id)])
+                    setUserTeams(current => [...current.filter( c => c.id !== d.id), d])
                     
                     // setTtm({})
                 }

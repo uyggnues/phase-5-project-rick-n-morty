@@ -3,7 +3,7 @@ import { CharacterContext } from '../Context/CharacterContext';
 import { TeamContext } from '../Context/TeamContext';
 import { UserContext } from '../Context/UserContext';
 import TeamCharacter from './TeamCharacter';
-import TeamMembers from './TeamMembers';
+import TeamMembersU from './TeamMembersU';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
 
@@ -41,10 +41,10 @@ const UpdateTeam = () => {
         e.preventDefault()
     }
 
-    ttm.map ( m => blackListedIds.length < ttm.length? setBlackListedIds(current => [...current, m.id.toString()]) : null)
-    useEffect(() => {
-    },[])
-
+    ttm.slice(0,5).map ( m => blackListedIds.length < ttm.length? setBlackListedIds(current => [...current, m.id.toString()]) : null)
+    // useEffect(() => {
+    // },[])
+    console.log(ttm)
     const handleDrag = (e, charType) => {
         e.dataTransfer.setData('charType', charType)
     }
@@ -87,11 +87,11 @@ const UpdateTeam = () => {
         }
     }
 
-    // console.log(ttm)
+    console.log(team)
     useEffect(() => {
-        if(team.team_members !== undefined) {
+        if(team.team_members !== undefined && ttm.length < 5) {
             // debugger
-            team.team_members.map( m => setTtm(current => [...current, m]))
+            team.team_members.slice(0,5).map( m => setTtm(current => [...current, m]))
         }
     },[team.team_members])
 
@@ -102,7 +102,7 @@ const UpdateTeam = () => {
             <form onSubmit={(e) => updateTeam(e, updatingTeam, teamId, ttm, navigate, setTtm)} className='teamForm'>
                 <input id='team_name' type='text' placeholder='team name here' name='name' value={updatingTeam?.name || team.name || ''} onChange={handleChange}/>
                 <div className='canvas' onDrop={handleDrop} onDragOver={handleDragOver}>
-                    <TeamMembers cha={ttm !== undefined ? ttm : null} handleDrag={handleDrag}/>
+                    <TeamMembersU cha={ttm !== undefined ? ttm : null} handleDrag={handleDrag}/>
                 </div>
                 <button className='createTeam'>UPDATE!</button>
             </form>
