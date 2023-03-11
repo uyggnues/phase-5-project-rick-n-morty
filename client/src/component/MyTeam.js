@@ -5,15 +5,18 @@ import { useNavigate } from 'react-router-dom'
 // import { UserContext } from '../Context/UserContext';
 
 const MyTeam = ({ut}) => {
-  // console.log(ut)
+  console.log(ut)
     const navigate = useNavigate()
-    const [tm, setTm] = useState(ut.team_members)
+    const [tm, setTm] = useState([])
     const { deleteTeam } = useContext(TeamContext)
     // const { user } = useContext(UserContext)
+    useEffect(() => {
+      setTm(ut.team_members)
+    },[ut.team_members])
     
     const mappedUt = tm.slice(0,5).length === 5 ? tm.slice(0,5).map( utm => <MyTeamMembers key={utm.id} utm={utm}/>) : null
 
-    // console.log(tm)
+    console.log(tm)
   
     return (
         <div className='team_outline'>

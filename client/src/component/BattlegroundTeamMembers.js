@@ -7,7 +7,7 @@ const BattlegroundTeamMembers = ({user, t}) => {
     const {fetchEnemyTeam, enemyTeams} = useContext(TeamContext)
     const [BP, setBP] = useState([])
     const [EBP, setEBP] = useState([])
-    const [i, setI] = useState(0)
+    const [index, setIndex] = useState(0)
     const [battle, setBattle] = useState(false)
     const [results, setResults] = useState([])
     const [re, setRe] = useState(0)
@@ -41,7 +41,7 @@ const BattlegroundTeamMembers = ({user, t}) => {
     )
 
     // console.log(enemyTeams[i])
-    const ct = enemyTeams !== undefined ? enemyTeams[i] : null
+    const ct = enemyTeams !== undefined ? enemyTeams[index] : null
     
     useEffect(() => {
         // console.log(ct)
@@ -55,60 +55,62 @@ const BattlegroundTeamMembers = ({user, t}) => {
     // EBP.length < 5 ? setEBP(current => [...current, t.name.length * t.origin.length]) : null
     const next = () => {
         setEBP([])
-        if (i >= enemyTeams.length - 1) {
-            setI(0)
+        setResults([])
+        if (index >= enemyTeams.length - 1) {
+            setIndex(0)
             winner()
         } else {
-            setI(current => current + 1)
+            setIndex(current => current + 1)
             winner()
         }
     }
 
     const previous = () => {
         setEBP([])
-        if (i <= 0) {
-            setI(enemyTeams.length - 1)
-            // setResults([])
+        setResults([])
+        if (index <= 0) {
+            setIndex(enemyTeams.length - 1)
             winner()
         } else {
-            setI(current => current - 1)
+            setIndex(current => current - 1)
             // setResults([])
             winner()
         }
     }
 
     const sum = BP.length > 1 ? BP.reduce((a, b) => {return (a + b)}) : null
-
+    console.log(EBP, BP)
     const winner = (BI) => {
         // debugger
         // setResults([])
         if ( BP[BI] > EBP[BI]) {
             if(results.length < 5) {
                 setResults(current => [...current, 'won'])
-                // setCount(count + 1)
+                // final()
             }
             return <p className='won'>WON</p> 
         } else {
             if(results.length < 5) {
                 setResults(current => [...current, 'lost'])
-                // setCount(count + 1)
+                // final()
             }
             return <p className='lost'>LOST</p>
         }
     }
-    const totalWinner = re > 2 && battle ? <p className='final_won'>WON</p> : <p className='final_lost'>LOST</p>
-    
-    useEffect(() => {
+
+
+    const final = () => {
         if (results.length === 5) {
-            // console.log(count)
-            setRe(results.filter(result => result === 'won').length)
+            setRe(results.filter(result => result === 'won').length) 
             setResults([])
         }
-    },[totalWinner])
-        // setCount(count + 1)
-    // const lost = results.filter(result => result === 'lost').length
-    // console.log(EBP)
-    // console.log(BP)
+    } 
+
+
+    const totalWinner = re > 2 && battle ? <p className='final_won'>WON</p> : <p className='final_lost'>LOST</p>
+    
+
+
     console.log(results, re)
 
         
@@ -122,7 +124,7 @@ const BattlegroundTeamMembers = ({user, t}) => {
             <p>vs</p>
             <div className='enemy_display'> 
                 <button className='battle_previous_btn' onClick={() => previous()}><RiArrowDropLeftFill/></button>
-                {mappedEnemyTeams[i]}
+                {mappedEnemyTeams[index]}
                 <button className='battle_next_btn' onClick={() => next()}><RiArrowDropRightFill/></button>
             </div>
             </div>
@@ -142,7 +144,7 @@ const BattlegroundTeamMembers = ({user, t}) => {
                     <div className='winners'>round 4: {winner(3)}</div>
                     <div className='winners'>round 5: {winner(4)}</div>
                     <div className='final_winners'>results: {totalWinner}</div>
-                    <button className='next_battle' onClick={() => setBattle(current => !current)}>next</button>
+                    <button className='next_battle' onClick={() => final() && setBattle(current => !current)}>next</button>
                 </div>
                 }
             </div>
