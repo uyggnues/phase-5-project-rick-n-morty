@@ -52,7 +52,7 @@ function App() {
       <Route path='/profile' element={<Profile />}/>
       <Route path='/battle' element={<Battle />}/>
       <Route path='/teams' element={<Teams />}/>
-      <Route path='/  ' element={<Welcome />}/>
+      <Route path='/' element={<Welcome />}/>
     </Routes>
     </>
   );
