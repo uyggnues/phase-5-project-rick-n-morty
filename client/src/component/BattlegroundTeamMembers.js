@@ -80,19 +80,19 @@ const BattlegroundTeamMembers = ({user, t}) => {
 
     const sum = BP.length > 1 ? BP.reduce((a, b) => {return (a + b)}) : null
     console.log(EBP, BP)
+
     const winner = (BI) => {
-        // debugger
         // setResults([])
         if ( BP[BI] > EBP[BI]) {
             if(results.length < 5) {
                 setResults(current => [...current, 'won'])
-                // final()
+                final()
             }
             return <p className='won'>WON</p> 
         } else {
             if(results.length < 5) {
                 setResults(current => [...current, 'lost'])
-                // final()
+                final()
             }
             return <p className='lost'>LOST</p>
         }
@@ -100,6 +100,7 @@ const BattlegroundTeamMembers = ({user, t}) => {
 
 
     const final = () => {
+        // setResults([])
         if (results.length === 5) {
             setRe(results.filter(result => result === 'won').length) 
             setResults([])
