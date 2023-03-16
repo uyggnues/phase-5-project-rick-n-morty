@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: rick_n_morty_production
-  username: rick_n_morty
-  password: <%= ENV["RICK_N_MORTY_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
